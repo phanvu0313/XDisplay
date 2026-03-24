@@ -28,7 +28,6 @@ public struct IOSAppWiredTransportBridge: WiredTransportBridge {
         do {
             channel.stop()
             try channel.startServer(port: NWEndpoint.Port(rawValue: Constants.devicePort)!)
-            AppLogger.transport.info("iPhone wired listener started on device port \(Constants.devicePort)")
         } catch {
             throw WiredTransportBridgeError.tunnelUnavailable(
                 "Failed to start the iPhone cable listener on device port \(Constants.devicePort): \(error.localizedDescription)"
@@ -77,7 +76,6 @@ public struct IProxyWiredTransportBridge: WiredTransportBridge {
             host: NWEndpoint.Host("127.0.0.1"),
             port: NWEndpoint.Port(rawValue: localPort)!
         )
-        AppLogger.transport.info("Started iproxy wired bridge for device \(udid, privacy: .public) on localhost:\(localPort)")
     }
 
     public func stop() async {

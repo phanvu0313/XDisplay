@@ -20,29 +20,35 @@
 		23BB4A7080585361550249E7 /* LoopbackBroker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B742B8FACE0868C9EBE6CA /* LoopbackBroker.swift */; };
 		25B189321491207CCF264802 /* ClientOrientationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EE3ECB00BF4AD5977B6035 /* ClientOrientationManager.swift */; };
 		2950174408C7092EEC5763D9 /* DisplaySessionState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496ADFD35AB2203ECF93D31D /* DisplaySessionState.swift */; };
+		2D36CC1AB5E0A946B4CC9918 /* HostAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD9A0E2AA9DD4829670D71 /* HostAppDelegate.swift */; };
 		3167ADA403A54762DE8D9339 /* ClientStatusBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D56B04F4DBAB7B4DD47399 /* ClientStatusBanner.swift */; };
 		335B2ABC3179FC2458F7DF89 /* WiredControlChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D702821E6BE1B687C9A4225 /* WiredControlChannel.swift */; };
 		33A7A4CE33A43EDAC30BD757 /* TransportError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AED3EB07A5DCB9507393779 /* TransportError.swift */; };
 		3611919A66009794F6CBABCE /* ClientSetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B0C4908071D48204C43FAC /* ClientSetupView.swift */; };
 		385D386DA85E46B48570D7FD /* EventLogEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51F630A74D3B134C574E403 /* EventLogEntry.swift */; };
 		41674ABF3BB0DAC04BB5BA30 /* MockFrameDescriptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D7E8D9E312536DE7555FC6 /* MockFrameDescriptor.swift */; };
+		424E25D4FDA49A5D345E8C80 /* XDisplayTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE59161E0DB3A5054250ED8D /* XDisplayTheme.swift */; };
 		443DE06128654A59543EF87E /* TransportPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = E925C92BDF10955FCA44BBCD /* TransportPacket.swift */; };
 		46A4EE6A275DE6ED6CD61998 /* DisplaySessionState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496ADFD35AB2203ECF93D31D /* DisplaySessionState.swift */; };
 		48367B485B99413EFC9AE993 /* AppLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC6C1C45A4FA34C132E19082 /* AppLogger.swift */; };
 		49D15C5AF52FA51C34D42FF3 /* DisplaySessionConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2633288D4159014A6820B88B /* DisplaySessionConfiguration.swift */; };
+		5039367DA361E60CCE2CE4D4 /* HostMenuBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE19F24F81BB6D225D6D2453 /* HostMenuBarView.swift */; };
 		53282413ABB018A5D6D26DED /* NetworkTransport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CEAFB434F7BED7F473E3357 /* NetworkTransport.swift */; };
 		56875F60C82324565D056860 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C050B55745CF8A1A63A21E2 /* LaunchScreen.storyboard */; };
 		568F270AB52093C42F32382F /* WiredTransportBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D4DC0DC816ADB7C3362CB3B /* WiredTransportBridge.swift */; };
 		594D056A84C84E5B2027461E /* H264PreviewDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0F19CCEF6EBC53AF37C4C0 /* H264PreviewDecoder.swift */; };
 		603F93C9FA7078E4C5ABEB86 /* EventLogEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51F630A74D3B134C574E403 /* EventLogEntry.swift */; };
+		64560865CBDE53936D0E068D /* XDisplayTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE59161E0DB3A5054250ED8D /* XDisplayTheme.swift */; };
 		65521DA7E7EC308A4AC9D428 /* ClientImmersiveDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53F798682D29370E060913C2 /* ClientImmersiveDisplayView.swift */; };
 		68913CC1151DA83BE7AEFE73 /* ExtendedDisplayGuideWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE828F8BBBF1DE775FE76E2 /* ExtendedDisplayGuideWindowController.swift */; };
 		696C7E175A136360F6BCA7F1 /* HostDashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CABFB11D5DF0975B35C044 /* HostDashboardView.swift */; };
 		698994AFC8FEB66E13512E96 /* ClientAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF9CF0B64B798F2EE09C7CC /* ClientAppDelegate.swift */; };
 		6A1CB5CC60D139714C4842FB /* XDisplayClientApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DAF15EAA7572BA197E33A3 /* XDisplayClientApp.swift */; };
 		6A389448671F22B8075F3891 /* VirtualDisplayManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BCDB9723F97BD7F158EC45A /* VirtualDisplayManager.swift */; };
+		6B610FB02BD98F5F640A94C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FC465DB82EDEC5E58C4A6CC6 /* Assets.xcassets */; };
 		6B71FD28632F45C653FF9E48 /* ClientViewerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E03D4D1FD179E262BE01A50 /* ClientViewerView.swift */; };
 		76CC490652E6280610F38571 /* WiredTransportBridgeFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857AA7D9269ABD657BCB321E /* WiredTransportBridgeFactory.swift */; };
+		84114F60D3FAAAFF9C1CD746 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC6D0DEACFC1DE841DB2F221 /* Assets.xcassets */; };
 		862330C1BFF01A7E5126FD5C /* VirtualDisplayProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68574C5150183A4C13411A33 /* VirtualDisplayProvider.swift */; };
 		99093F5268B28FADF7023DD7 /* TransportMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8DB08760AC7AC74ECC58CF /* TransportMessages.swift */; };
 		99A45EF906B9986706785B20 /* ScreenCapturePermissionCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F067FCCCA10E03CBCF11B53 /* ScreenCapturePermissionCoordinator.swift */; };
@@ -100,6 +106,7 @@
 		4E03D4D1FD179E262BE01A50 /* ClientViewerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientViewerView.swift; sourceTree = "<group>"; };
 		53F798682D29370E060913C2 /* ClientImmersiveDisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientImmersiveDisplayView.swift; sourceTree = "<group>"; };
 		567928C733D99930CDD7FB08 /* XDisplayClient.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = XDisplayClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5ABD9A0E2AA9DD4829670D71 /* HostAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostAppDelegate.swift; sourceTree = "<group>"; };
 		68574C5150183A4C13411A33 /* VirtualDisplayProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirtualDisplayProvider.swift; sourceTree = "<group>"; };
 		6880232E546763406C7AB52A /* ClientDisplaySurfaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientDisplaySurfaceView.swift; sourceTree = "<group>"; };
 		717CF563158CAA6DAA1FB0D6 /* ClientSceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientSceneDelegate.swift; sourceTree = "<group>"; };
@@ -116,12 +123,15 @@
 		B8EE3ECB00BF4AD5977B6035 /* ClientOrientationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientOrientationManager.swift; sourceTree = "<group>"; };
 		C02687F37E3C95DE49B4073E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		C70E48EE512F079A520E9E1A /* SessionRuntime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionRuntime.swift; sourceTree = "<group>"; };
+		CC6D0DEACFC1DE841DB2F221 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		CE19F24F81BB6D225D6D2453 /* HostMenuBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostMenuBarView.swift; sourceTree = "<group>"; };
 		D100C626AC2FAE06A633883E /* ClientControlPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientControlPanel.swift; sourceTree = "<group>"; };
 		D51F630A74D3B134C574E403 /* EventLogEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventLogEntry.swift; sourceTree = "<group>"; };
 		D9557DB12D287E777A528407 /* H264PreviewEncoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = H264PreviewEncoder.swift; sourceTree = "<group>"; };
 		DAF9CF0B64B798F2EE09C7CC /* ClientAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientAppDelegate.swift; sourceTree = "<group>"; };
 		DB8DB08760AC7AC74ECC58CF /* TransportMessages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransportMessages.swift; sourceTree = "<group>"; };
 		DDE828F8BBBF1DE775FE76E2 /* ExtendedDisplayGuideWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtendedDisplayGuideWindowController.swift; sourceTree = "<group>"; };
+		DE59161E0DB3A5054250ED8D /* XDisplayTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XDisplayTheme.swift; sourceTree = "<group>"; };
 		E4238A4CEAC036C062E01572 /* HostDashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostDashboardViewModel.swift; sourceTree = "<group>"; };
 		E925C92BDF10955FCA44BBCD /* TransportPacket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransportPacket.swift; sourceTree = "<group>"; };
 		EAC0DA878F1A32A28719B54C /* ClientViewerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientViewerViewModel.swift; sourceTree = "<group>"; };
@@ -130,6 +140,7 @@
 		F2B0C4908071D48204C43FAC /* ClientSetupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientSetupView.swift; sourceTree = "<group>"; };
 		F6E8A79F31F7BD77A454E63D /* LoopbackTransport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoopbackTransport.swift; sourceTree = "<group>"; };
 		FA20C83EFF505063B3C64EFB /* WiredTransport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WiredTransport.swift; sourceTree = "<group>"; };
+		FC465DB82EDEC5E58C4A6CC6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FC6C1C45A4FA34C132E19082 /* AppLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLogger.swift; sourceTree = "<group>"; };
 		FEA2D8298E141E96FFECB2D0 /* Transport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transport.swift; sourceTree = "<group>"; };
 		FEE7A0FBD8D1F4DD1A5EF97B /* RemoteDisplayRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteDisplayRenderer.swift; sourceTree = "<group>"; };
@@ -147,6 +158,8 @@
 		11F2B81E31C1EF1B2BB39376 /* App */ = {
 			isa = PBXGroup;
 			children = (
+				5ABD9A0E2AA9DD4829670D71 /* HostAppDelegate.swift */,
+				CE19F24F81BB6D225D6D2453 /* HostMenuBarView.swift */,
 				ECDA9AC98B8B9A83C2BE25C7 /* XDisplayHost-Bridging-Header.h */,
 				2B03C254251F11C9D9F5D432 /* XDisplayHostApp.swift */,
 			);
@@ -211,6 +224,7 @@
 		41EFF2BD43A3A2157ED8ACB1 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				FC465DB82EDEC5E58C4A6CC6 /* Assets.xcassets */,
 				C02687F37E3C95DE49B4073E /* Info.plist */,
 				8C050B55745CF8A1A63A21E2 /* LaunchScreen.storyboard */,
 			);
@@ -285,10 +299,19 @@
 				11F2B81E31C1EF1B2BB39376 /* App */,
 				7CF52103AEF81BFCCB5F1313 /* Capture */,
 				3B6A5B12529F07CF4B674F50 /* Features */,
+				C9268A1D73226D5A41E09AA9 /* Resources */,
 				71537B1DFE3D7107D517BF5B /* VirtualDisplay */,
 			);
 			name = HostApp;
 			path = Sources/HostApp;
+			sourceTree = "<group>";
+		};
+		949970C6FE5148EAE0F7BE7B /* Design */ = {
+			isa = PBXGroup;
+			children = (
+				DE59161E0DB3A5054250ED8D /* XDisplayTheme.swift */,
+			);
+			path = Design;
 			sourceTree = "<group>";
 		};
 		BEA6388556AC6468F98A6547 /* Products */ = {
@@ -298,6 +321,14 @@
 				A0B8367F299AFDE18DB1D26C /* XDisplayHost.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		C9268A1D73226D5A41E09AA9 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				CC6D0DEACFC1DE841DB2F221 /* Assets.xcassets */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		D8826CBF32C77092E794754B = {
@@ -341,6 +372,7 @@
 		F0921848DA2B5B572C916844 /* DisplayCore */ = {
 			isa = PBXGroup;
 			children = (
+				949970C6FE5148EAE0F7BE7B /* Design */,
 				02F8F46B751F60AC4639E666 /* Logging */,
 				6123B791DC90113465A194B1 /* Models */,
 				68CDA8509A5DD2AE78B92F02 /* Session */,
@@ -377,6 +409,7 @@
 			buildConfigurationList = 2DACA9E09092121F513D9FCD /* Build configuration list for PBXNativeTarget "XDisplayHost" */;
 			buildPhases = (
 				7625686E703F7E960410BC4E /* Sources */,
+				8AF5DE5B84C6CE7A9A932558 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -429,10 +462,19 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		8AF5DE5B84C6CE7A9A932558 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				84114F60D3FAAAFF9C1CD746 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F04038B4986B74C8EC513996 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6B610FB02BD98F5F640A94C0 /* Assets.xcassets in Resources */,
 				56875F60C82324565D056860 /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -451,8 +493,10 @@
 				385D386DA85E46B48570D7FD /* EventLogEntry.swift in Sources */,
 				68913CC1151DA83BE7AEFE73 /* ExtendedDisplayGuideWindowController.swift in Sources */,
 				F7C7C9618E9026CED7E6922D /* H264PreviewEncoder.swift in Sources */,
+				2D36CC1AB5E0A946B4CC9918 /* HostAppDelegate.swift in Sources */,
 				696C7E175A136360F6BCA7F1 /* HostDashboardView.swift in Sources */,
 				A787923914620F9F9A969F0A /* HostDashboardViewModel.swift in Sources */,
+				5039367DA361E60CCE2CE4D4 /* HostMenuBarView.swift in Sources */,
 				F0CDF1BA3FF631FE45BA70BD /* HostPerformanceProfile.swift in Sources */,
 				D0499E0131AA5E7501CD11D5 /* HostResolutionOption.swift in Sources */,
 				F0BEDE77B8BF7D540B2892D8 /* LoopbackBroker.swift in Sources */,
@@ -476,6 +520,7 @@
 				0CD89BB424DB0C91FFC863F3 /* WiredTransportBridgeFactory.swift in Sources */,
 				9DB06A2E245AA0CEC73B62BF /* XDVVirtualDisplaySession.m in Sources */,
 				DF0479FEB26438623971F319 /* XDisplayHostApp.swift in Sources */,
+				64560865CBDE53936D0E068D /* XDisplayTheme.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -519,6 +564,7 @@
 				568F270AB52093C42F32382F /* WiredTransportBridge.swift in Sources */,
 				76CC490652E6280610F38571 /* WiredTransportBridgeFactory.swift in Sources */,
 				6A1CB5CC60D139714C4842FB /* XDisplayClientApp.swift in Sources */,
+				424E25D4FDA49A5D345E8C80 /* XDisplayTheme.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

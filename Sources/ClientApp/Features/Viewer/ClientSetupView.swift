@@ -1,56 +1,67 @@
 import SwiftUI
 
 struct ClientSetupView: View {
-    @Binding var displayScaleMode: ClientDisplayScaleMode
     let state: DisplaySessionState
     let connectAction: () -> Void
 
     var body: some View {
         GeometryReader { proxy in
             ZStack {
-                Color.white.ignoresSafeArea()
+                LinearGradient(
+                    colors: [
+                        XDisplayTheme.backgroundTop,
+                        XDisplayTheme.backgroundBottom
+                    ],
+                    startPoint: .topLeading,
+                    endPoint: .bottomTrailing
+                )
+                .ignoresSafeArea()
 
                 VStack(spacing: 0) {
                     ScrollView(showsIndicators: false) {
                         VStack(alignment: .leading, spacing: 24) {
-                            VStack(alignment: .leading, spacing: 10) {
-                                Text("XDisplay")
-                                    .font(.system(size: 40, weight: .bold))
-                                    .foregroundStyle(.black)
+                            VStack(alignment: .leading, spacing: 12) {
+                                statusPill
 
-                                Text("Connect by USB and start the display.")
+                                Text("XDisplay")
+                                    .font(.system(size: 42, weight: .bold, design: .rounded))
+                                    .foregroundStyle(XDisplayTheme.primaryText)
+
+                                Text("Use your iPhone as a wired secondary display.")
                                     .font(.system(size: 18, weight: .regular))
-                                    .foregroundStyle(Color.black.opacity(0.55))
+                                    .foregroundStyle(XDisplayTheme.secondaryText)
                                     .fixedSize(horizontal: false, vertical: true)
                             }
+
+                            heroCard
 
                             sectionCard(title: "Connection") {
                                 HStack(spacing: 14) {
                                     Image(systemName: "cable.connector")
                                         .font(.title3)
-                                        .foregroundStyle(.blue)
+                                        .foregroundStyle(XDisplayTheme.accent)
                                         .frame(width: 28)
 
                                     VStack(alignment: .leading, spacing: 2) {
                                         Text("USB Cable")
                                             .font(.body.bold())
-                                            .foregroundStyle(.black)
-                                        Text("Wired only")
+                                            .foregroundStyle(XDisplayTheme.primaryText)
+                                        Text("Wired only • ready when the Mac starts")
                                             .font(.footnote)
-                                            .foregroundStyle(.secondary)
+                                            .foregroundStyle(XDisplayTheme.secondaryText)
                                     }
 
                                     Spacer()
 
                                     Image(systemName: "checkmark.circle.fill")
                                         .font(.title3)
-                                        .foregroundStyle(.blue)
+                                        .foregroundStyle(XDisplayTheme.accent)
                                 }
                                 .padding(14)
                                 .frame(maxWidth: .infinity, alignment: .leading)
                                 .background(
                                     RoundedRectangle(cornerRadius: 22)
-                                        .fill(Color.blue.opacity(0.1))
+                                        .fill(XDisplayTheme.accentSoft)
                                 )
                             }
 
@@ -63,12 +74,12 @@ struct ClientSetupView: View {
 
                                         Text(state.statusText)
                                             .font(.system(size: 17, weight: .semibold))
-                                            .foregroundStyle(.black)
+                                            .foregroundStyle(XDisplayTheme.primaryText)
                                     }
 
                                     Text("\(state.configuration.width)×\(state.configuration.height) • \(state.configuration.targetFPS) FPS")
                                         .font(.system(size: 15, weight: .medium))
-                                        .foregroundStyle(Color.black.opacity(0.5))
+                                        .foregroundStyle(XDisplayTheme.secondaryText)
                                 }
                             }
                         }
@@ -94,7 +105,7 @@ struct ClientSetupView: View {
                                 RoundedRectangle(cornerRadius: 18)
                                     .fill(
                                         LinearGradient(
-                                            colors: [Color.blue, Color.blue.opacity(0.82)],
+                                            colors: [XDisplayTheme.accent, XDisplayTheme.accent.opacity(0.82)],
                                             startPoint: .leading,
                                             endPoint: .trailing
                                         )
@@ -107,18 +118,40 @@ struct ClientSetupView: View {
                         .padding(.horizontal, 24)
                         .padding(.top, 14)
                         .padding(.bottom, 12)
-                        .background(Color.white)
+                        .background(Color.white.opacity(0.94))
                     }
                 }
             }
         }
     }
 
+    private var heroCard: some View {
+        VStack(alignment: .leading, spacing: 14) {
+            Text("Setup")
+                .font(.system(size: 13, weight: .semibold))
+                .foregroundStyle(XDisplayTheme.secondaryText)
+
+            HStack(spacing: 12) {
+                featureBadge(title: "USB", subtitle: "Cable")
+                featureBadge(title: "Ext", subtitle: "Display")
+                featureBadge(title: "60+", subtitle: "FPS")
+            }
+        }
+        .padding(18)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(XDisplayTheme.panel, in: RoundedRectangle(cornerRadius: 24))
+        .overlay {
+            RoundedRectangle(cornerRadius: 24)
+                .stroke(XDisplayTheme.panelBorder, lineWidth: 1)
+        }
+        .shadow(color: .black.opacity(0.04), radius: 18, x: 0, y: 10)
+    }
+
     private func sectionCard<Content: View>(title: String, @ViewBuilder content: () -> Content) -> some View {
         VStack(alignment: .leading, spacing: 14) {
             Text(title)
                 .font(.system(size: 17, weight: .semibold))
-                .foregroundStyle(.black)
+                .foregroundStyle(XDisplayTheme.primaryText)
 
             content()
         }
@@ -126,27 +159,67 @@ struct ClientSetupView: View {
         .frame(maxWidth: .infinity, alignment: .leading)
         .background(
             RoundedRectangle(cornerRadius: 24)
-                .fill(Color(white: 0.97))
+                .fill(XDisplayTheme.panel)
         )
         .overlay {
             RoundedRectangle(cornerRadius: 24)
-                .stroke(Color.black.opacity(0.06), lineWidth: 1)
+                .stroke(XDisplayTheme.panelBorder, lineWidth: 1)
         }
+        .shadow(color: .black.opacity(0.03), radius: 14, x: 0, y: 8)
     }
 
     private var statusColor: Color {
         switch state.connectionState {
         case .idle:
-            .gray
+            XDisplayTheme.idle
         case .discovering:
-            .orange
+            XDisplayTheme.warning
         case .connected:
-            .blue
+            XDisplayTheme.accent
         case .streaming:
-            .green
+            XDisplayTheme.success
         case .failed:
-            .red
+            XDisplayTheme.danger
         }
+    }
+
+    private var statusPill: some View {
+        Label(connectionLabel, systemImage: "circle.fill")
+            .font(.system(size: 13, weight: .semibold))
+            .padding(.horizontal, 12)
+            .padding(.vertical, 8)
+            .background(statusColor.opacity(0.14), in: Capsule())
+            .foregroundStyle(statusColor)
+    }
+
+    private var connectionLabel: String {
+        switch state.connectionState {
+        case .idle:
+            "Ready"
+        case .discovering:
+            "Connecting"
+        case .connected:
+            "Connected"
+        case .streaming:
+            "Streaming"
+        case .failed:
+            "Error"
+        }
+    }
+
+    private func featureBadge(title: String, subtitle: String) -> some View {
+        VStack(alignment: .leading, spacing: 2) {
+            Text(title)
+                .font(.system(size: 16, weight: .bold, design: .rounded))
+                .foregroundStyle(XDisplayTheme.primaryText)
+            Text(subtitle)
+                .font(.system(size: 12, weight: .medium))
+                .foregroundStyle(XDisplayTheme.secondaryText)
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(.vertical, 12)
+        .padding(.horizontal, 14)
+        .background(XDisplayTheme.accentSoft, in: RoundedRectangle(cornerRadius: 18))
     }
 
     private var isConnectDisabled: Bool {

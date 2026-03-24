@@ -43,15 +43,11 @@ final class WiredControlChannel: @unchecked Sendable {
             self?.adoptConnection(connection)
             connection.start(queue: self?.queue ?? DispatchQueue.global(qos: .userInitiated))
         }
-        listener.stateUpdateHandler = { state in
-            AppLogger.transport.debug("Wired listener state: \(String(describing: state), privacy: .public)")
-        }
         self.listener = listener
         listener.start(queue: queue)
     }
 
     func stop() {
-        AppLogger.transport.info("Wired control channel stopping")
         failPendingPackets(with: TransportError.connectionUnavailable)
         connection?.cancel()
         connection = nil
@@ -93,7 +89,6 @@ final class WiredControlChannel: @unchecked Sendable {
     }
 
     private func adoptConnection(_ connection: NWConnection) {
-        AppLogger.transport.info("Wired control channel adopting connection")
         self.connection?.cancel()
         self.connection = connection
 
@@ -102,7 +97,6 @@ final class WiredControlChannel: @unchecked Sendable {
 
             switch state {
             case .ready:
-                AppLogger.transport.info("Wired control connection ready")
                 self.flushPendingPacketsIfPossible()
                 self.receiveNextChunk()
             case let .failed(error):
@@ -110,11 +104,10 @@ final class WiredControlChannel: @unchecked Sendable {
                 self.failPendingPackets(with: error)
                 self.continuation?.finish()
             case .cancelled:
-                AppLogger.transport.info("Wired control connection cancelled")
                 self.failPendingPackets(with: TransportError.connectionUnavailable)
                 self.continuation?.finish()
             default:
-                AppLogger.transport.debug("Wired control state: \(String(describing: state), privacy: .public)")
+                break
             }
         }
     }
@@ -190,7 +183,6 @@ final class WiredControlChannel: @unchecked Sendable {
             }
 
             if isComplete {
-                AppLogger.transport.info("Wired control receive completed")
                 self.continuation?.finish()
                 return
             }

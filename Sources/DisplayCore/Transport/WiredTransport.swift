@@ -15,7 +15,6 @@ public final class WiredTransport: @unchecked Sendable, Transport {
             try await bridge.start(sessionID: sessionID, role: role)
             self.sessionID = sessionID
             self.role = role
-            AppLogger.transport.info("Wired transport bridge started")
         } catch let error as WiredTransportBridgeError {
             AppLogger.transport.error("Wired transport bridge failed: \(error.localizedDescription, privacy: .public)")
             throw error
@@ -29,7 +28,6 @@ public final class WiredTransport: @unchecked Sendable, Transport {
         await bridge.stop()
         sessionID = nil
         role = nil
-        AppLogger.transport.info("Wired transport bridge stopped")
     }
 
     public func send(_ message: ControlMessage) async throws {

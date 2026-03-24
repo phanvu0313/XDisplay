@@ -37,6 +37,7 @@ targets:
       - path: Sources/HostApp
     settings:
       base:
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
         CODE_SIGN_STYLE: Automatic
         DEVELOPMENT_TEAM: 4CE29YF43E
         CODE_SIGN_IDENTITY: Apple Development
@@ -51,6 +52,7 @@ targets:
       - path: Sources/ClientApp
     settings:
       base:
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
         CODE_SIGN_STYLE: Automatic
         DEVELOPMENT_TEAM: 4CE29YF43E
         PRODUCT_BUNDLE_IDENTIFIER: com.xdisplay.client

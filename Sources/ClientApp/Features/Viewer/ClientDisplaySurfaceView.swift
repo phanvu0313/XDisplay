@@ -5,8 +5,6 @@ import UIKit
 struct ClientDisplaySurfaceView: View {
     let renderer: RemoteDisplayRenderer
     let mockFrame: MockFrameDescriptor?
-    let statusText: String
-    let scaleMode: ClientDisplayScaleMode
 
     var body: some View {
         ZStack {

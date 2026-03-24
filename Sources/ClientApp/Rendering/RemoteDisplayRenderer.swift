@@ -29,8 +29,6 @@ final class RemoteDisplayRenderer: @unchecked Sendable {
 
     private let decodePipeline = ClientVideoDecodePipeline()
     private let lock = NSLock()
-    private var hasLoggedFirstVideoFrame = false
-    private var receivedVideoFrameCount = 0
     private var pendingVideoFrame: EncodedVideoFrame?
     private var decodeTask: Task<Void, Never>?
     private var onVideoFrameCommitted: VideoFrameSink?
@@ -38,7 +36,6 @@ final class RemoteDisplayRenderer: @unchecked Sendable {
     private(set) var latestFrame: MockFrameDescriptor?
 
     func prepare() async throws {
-        AppLogger.video.info("Client renderer placeholder prepared")
     }
 
     func setVideoFrameSink(_ sink: VideoFrameSink?) {
@@ -67,36 +64,15 @@ final class RemoteDisplayRenderer: @unchecked Sendable {
     }
 
     func display(_ frame: EncodedVideoFrame) {
-        var shouldStartDecodeLoop = false
-        var currentCount = 0
-        var logFirstFrame = false
-
         lock.lock()
-        receivedVideoFrameCount += 1
-        currentCount = receivedVideoFrameCount
-        if !hasLoggedFirstVideoFrame {
-            hasLoggedFirstVideoFrame = true
-            logFirstFrame = true
-        }
         pendingVideoFrame = frame
         if decodeTask == nil {
-            shouldStartDecodeLoop = true
             decodeTask = Task.detached(priority: .userInitiated) { [weak self] in
                 guard let self else { return }
                 await self.runDecodeLoop()
             }
         }
         lock.unlock()
-
-        if logFirstFrame {
-            AppLogger.video.info("Client received first \(frame.codec.rawValue, privacy: .public) frame \(frame.width)x\(frame.height) payload=\(frame.payload.count, privacy: .public) bytes")
-        } else if currentCount.isMultiple(of: 10) {
-            AppLogger.video.info("Client received \(currentCount, privacy: .public) \(frame.codec.rawValue, privacy: .public) frames")
-        }
-
-        if shouldStartDecodeLoop {
-            AppLogger.video.debug("Client started decode loop")
-        }
     }
 
     func reset() {
@@ -104,8 +80,6 @@ final class RemoteDisplayRenderer: @unchecked Sendable {
         let currentDecodeTask = decodeTask
         self.decodeTask = nil
         pendingVideoFrame = nil
-        hasLoggedFirstVideoFrame = false
-        receivedVideoFrameCount = 0
         latestFrame = nil
         lock.unlock()
 
@@ -122,16 +96,10 @@ final class RemoteDisplayRenderer: @unchecked Sendable {
     }
 
     private func commitDecodedFrame(_ decodedFrame: DecodedVideoFrame, for frame: EncodedVideoFrame) async {
-        let commitState = currentCommitState()
-
-        if let sink = commitState.sink {
+        if let sink = currentSink() {
             await MainActor.run {
                 sink(decodedFrame, frame)
             }
-        }
-
-        if commitState.count.isMultiple(of: 10) {
-            AppLogger.video.info("Client committed \(commitState.count, privacy: .public) \(frame.codec.rawValue, privacy: .public) frames to UI")
         }
     }
 
@@ -159,12 +127,11 @@ final class RemoteDisplayRenderer: @unchecked Sendable {
         }
     }
 
-    private func currentCommitState() -> (sink: VideoFrameSink?, count: Int) {
+    private func currentSink() -> VideoFrameSink? {
         lock.lock()
         let sink = onVideoFrameCommitted
-        let count = receivedVideoFrameCount
         lock.unlock()
-        return (sink, count)
+        return sink
     }
 }
 

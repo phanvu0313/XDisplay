@@ -44,7 +44,6 @@ final class ScreenCaptureCoordinator {
             targetSize: targetSize,
             fps: min(configuration.targetFPS, PreviewLimits.maxFPS)
         )
-        AppLogger.video.info("Screen capture pipeline prepared")
     }
 
     func recoverCapture(
@@ -94,11 +93,9 @@ final class ScreenCaptureCoordinator {
             }
 
             skippedFrameCount += 1
-            AppLogger.video.debug("Skipping ScreenCaptureKit sample without pixel buffer (\(skippedFrameCount, privacy: .public))")
 
             if skippedFrameCount >= PreviewLimits.maxEmptyFrameSkips {
                 if let lastPreviewFrame {
-                    AppLogger.video.debug("Reusing last preview frame after \(skippedFrameCount, privacy: .public) empty ScreenCaptureKit samples")
                     let fallbackFrame = EncodedVideoFrame(
                         frameIndex: frameIndex,
                         width: lastPreviewFrame.width,
@@ -184,7 +181,6 @@ final class ScreenCaptureCoordinator {
         activeStreamDisplayID = displayID
         activeStreamSize = targetSize
         activeStreamFPS = fps
-        AppLogger.video.info("Realtime SCStream started for display \(display.displayID) at \(Int(targetSize.width))x\(Int(targetSize.height)) @ \(fps) FPS")
     }
 
     private func stopActiveStream() async {

@@ -94,7 +94,7 @@ final class HostDashboardViewModel {
                 configuration: sessionConfiguration,
                 displayID: displayID
             )
-            extendedDisplayGuideWindowController.show(on: displayID)
+            extendedDisplayGuideWindowController.show(on: displayID, configuration: sessionConfiguration)
             appendLog("Virtual display ready")
             appendLog("Wired control plane ready")
 
@@ -330,12 +330,6 @@ final class HostDashboardViewModel {
                     }
                     try await transport.send(.videoFrame(frame))
                     self.sentPreviewFrameCount += 1
-                    if self.sentPreviewFrameCount.isMultiple(of: 10) {
-                        AppLogger.video.info("Host sent \(self.sentPreviewFrameCount, privacy: .public) preview frames over \(transport.mode.rawValue, privacy: .public)")
-                        await MainActor.run {
-                            self.appendLog("Sent \(self.sentPreviewFrameCount) preview frames over \(transport.mode.rawValue)")
-                        }
-                    }
                 } catch {
                     let localizedDescription = error.localizedDescription
                     let isTransientCaptureFailure =

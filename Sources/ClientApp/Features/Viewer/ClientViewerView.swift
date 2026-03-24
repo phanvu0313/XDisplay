@@ -10,7 +10,6 @@ struct ClientViewerView: View {
             Color.white.ignoresSafeArea()
 
             ClientSetupView(
-                displayScaleMode: $viewModel.displayScaleMode,
                 state: viewModel.state,
                 connectAction: connect
             )
@@ -18,9 +17,7 @@ struct ClientViewerView: View {
         .fullScreenCover(isPresented: displayPresentationBinding) {
             ClientImmersiveDisplayView(
                 renderer: viewModel.displayRenderer,
-                mockFrame: viewModel.latestFrame,
-                statusText: viewModel.state.statusText,
-                scaleMode: viewModel.displayScaleMode
+                mockFrame: viewModel.latestFrame
             )
             .interactiveDismissDisabled()
         }
