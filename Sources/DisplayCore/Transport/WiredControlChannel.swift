@@ -15,7 +15,7 @@ final class WiredControlChannel: @unchecked Sendable {
     private let encoder = JSONEncoder()
     private let decoder = JSONDecoder()
     private let queue: DispatchQueue
-    private let stream: AsyncStream<ControlEnvelope>
+    private var stream: AsyncStream<ControlEnvelope>
     private var continuation: AsyncStream<ControlEnvelope>.Continuation?
     private var connection: NWConnection?
     private var listener: NWListener?
@@ -25,21 +25,19 @@ final class WiredControlChannel: @unchecked Sendable {
 
     init(label: String) {
         queue = DispatchQueue(label: label)
-
-        var localContinuation: AsyncStream<ControlEnvelope>.Continuation?
-        stream = AsyncStream { streamContinuation in
-            localContinuation = streamContinuation
-        }
-        continuation = localContinuation
+        stream = AsyncStream { _ in }
+        resetStream()
     }
 
     func startClient(host: NWEndpoint.Host, port: NWEndpoint.Port) {
+        resetStream()
         let connection = NWConnection(host: host, port: port, using: .tcp)
         adoptConnection(connection)
         connection.start(queue: queue)
     }
 
     func startServer(port: NWEndpoint.Port) throws {
+        resetStream()
         let listener = try NWListener(using: .tcp, on: port)
         listener.newConnectionHandler = { [weak self] connection in
             self?.adoptConnection(connection)
@@ -60,6 +58,7 @@ final class WiredControlChannel: @unchecked Sendable {
         listener?.cancel()
         listener = nil
         receiveBuffer.removeAll(keepingCapacity: false)
+        continuation?.finish()
     }
 
     func send(_ envelope: ControlEnvelope) async throws {
@@ -84,6 +83,15 @@ final class WiredControlChannel: @unchecked Sendable {
         stream
     }
 
+    private func resetStream() {
+        continuation = nil
+        var localContinuation: AsyncStream<ControlEnvelope>.Continuation?
+        stream = AsyncStream { streamContinuation in
+            localContinuation = streamContinuation
+        }
+        continuation = localContinuation
+    }
+
     private func adoptConnection(_ connection: NWConnection) {
         AppLogger.transport.info("Wired control channel adopting connection")
         self.connection?.cancel()
@@ -100,9 +108,11 @@ final class WiredControlChannel: @unchecked Sendable {
             case let .failed(error):
                 AppLogger.transport.error("Wired control connection failed: \(error.localizedDescription, privacy: .public)")
                 self.failPendingPackets(with: error)
+                self.continuation?.finish()
             case .cancelled:
                 AppLogger.transport.info("Wired control connection cancelled")
                 self.failPendingPackets(with: TransportError.connectionUnavailable)
+                self.continuation?.finish()
             default:
                 AppLogger.transport.debug("Wired control state: \(String(describing: state), privacy: .public)")
             }
@@ -170,6 +180,7 @@ final class WiredControlChannel: @unchecked Sendable {
 
             if let error {
                 AppLogger.transport.error("Wired control receive failed: \(error.localizedDescription, privacy: .public)")
+                self.continuation?.finish()
                 return
             }
 
@@ -180,6 +191,7 @@ final class WiredControlChannel: @unchecked Sendable {
 
             if isComplete {
                 AppLogger.transport.info("Wired control receive completed")
+                self.continuation?.finish()
                 return
             }
 

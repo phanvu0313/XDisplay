@@ -25,6 +25,8 @@ final class HostDashboardViewModel {
     private var hasLoggedFirstPreviewFrame = false
     private var sentPreviewFrameCount = 0
     private var activeCaptureDisplayID: UInt32?
+    private(set) var connectedClientDevice: DeviceDescriptor?
+    private(set) var lastConnectedAt: Date?
 
     var isStreamingOrPreparing: Bool {
         switch state.connectionState {
@@ -64,6 +66,8 @@ final class HostDashboardViewModel {
             self.transport = transport
             wiredControlPlaneReady = false
             activeCaptureDisplayID = nil
+            connectedClientDevice = nil
+            lastConnectedAt = nil
 
             try await transport.start(sessionID: sessionID, role: .host)
             startReceivingMessages(from: transport)
@@ -129,6 +133,7 @@ final class HostDashboardViewModel {
 
         if let transport {
             try? await transport.send(.stopStream)
+            try? await Task.sleep(for: .milliseconds(180))
             await transport.stop()
         }
 
@@ -139,6 +144,7 @@ final class HostDashboardViewModel {
         wiredControlPlaneReady = false
         hasLoggedFirstPreviewFrame = false
         sentPreviewFrameCount = 0
+        connectedClientDevice = nil
         appendLog("Session stopped")
         await sessionController.transition(
             to: .idle,
@@ -177,6 +183,8 @@ final class HostDashboardViewModel {
         case let .hello(hello):
             appendLog("Client hello from \(hello.device.name)")
             wiredControlPlaneReady = true
+            connectedClientDevice = hello.device
+            lastConnectedAt = Date()
             await sessionController.transition(
                 to: .handshaking,
                 connectionState: .connected,
@@ -214,6 +222,7 @@ final class HostDashboardViewModel {
         case .stopStream:
             appendLog("Client stopped stream")
             extendedDisplayGuideWindowController.hide()
+            connectedClientDevice = nil
             await sessionController.transition(
                 to: .idle,
                 connectionState: .idle,
@@ -224,6 +233,7 @@ final class HostDashboardViewModel {
         case let .error(code, message):
             appendLog("Client error \(code.rawValue): \(message)")
             extendedDisplayGuideWindowController.hide()
+            connectedClientDevice = nil
             await sessionController.transition(
                 to: .failed,
                 connectionState: .failed,
@@ -243,12 +253,35 @@ final class HostDashboardViewModel {
         }
     }
 
+    var connectedDeviceSummary: String {
+        guard let connectedClientDevice else {
+            return "No iPhone connected"
+        }
+
+        return "\(connectedClientDevice.name) • \(connectedClientDevice.model)"
+    }
+
+    var connectionLabel: String {
+        switch state.connectionState {
+        case .idle:
+            "Idle"
+        case .discovering:
+            "Preparing"
+        case .connected:
+            "Connected"
+        case .streaming:
+            "Streaming"
+        case .failed:
+            "Failed"
+        }
+    }
+
     private func preferredConfiguration(for transportMode: TransportMode) -> DisplaySessionConfiguration {
         switch transportMode {
         case .wiredUSB:
             DisplaySessionConfiguration(
-                width: 2532,
-                height: 1170,
+                width: 1920,
+                height: 886,
                 targetFPS: 60,
                 codec: .h264,
                 quality: .lowLatency

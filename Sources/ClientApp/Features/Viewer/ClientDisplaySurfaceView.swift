@@ -88,6 +88,7 @@ final class ClientVideoViewport: UIView {
     private let sampleBufferDisplayLayer = AVSampleBufferDisplayLayer()
     private let imageView = UIImageView()
     private var currentAspectRatio: CGFloat = 16.0 / 9.0
+    private var displayTimebase: CMTimebase?
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -99,6 +100,7 @@ final class ClientVideoViewport: UIView {
         sampleBufferDisplayLayer.videoGravity = .resize
         sampleBufferDisplayLayer.backgroundColor = UIColor.black.cgColor
         layer.addSublayer(sampleBufferDisplayLayer)
+        configureDisplayTimebase()
 
         imageView.backgroundColor = .black
         imageView.clipsToBounds = true
@@ -144,6 +146,10 @@ final class ClientVideoViewport: UIView {
         imageView.image = nil
         imageView.isHidden = false
         sampleBufferDisplayLayer.flushAndRemoveImage()
+        if let displayTimebase {
+            CMTimebaseSetTime(displayTimebase, time: .zero)
+            CMTimebaseSetRate(displayTimebase, rate: 1.0)
+        }
     }
 
     private func layoutVideoFrame() {
@@ -174,5 +180,21 @@ final class ClientVideoViewport: UIView {
         ).integral
         imageView.frame = frame
         sampleBufferDisplayLayer.frame = frame
+    }
+
+    private func configureDisplayTimebase() {
+        var timebase: CMTimebase?
+        guard CMTimebaseCreateWithSourceClock(
+            allocator: kCFAllocatorDefault,
+            sourceClock: CMClockGetHostTimeClock(),
+            timebaseOut: &timebase
+        ) == noErr, let timebase else {
+            return
+        }
+
+        displayTimebase = timebase
+        sampleBufferDisplayLayer.controlTimebase = timebase
+        CMTimebaseSetTime(timebase, time: .zero)
+        CMTimebaseSetRate(timebase, rate: 1.0)
     }
 }

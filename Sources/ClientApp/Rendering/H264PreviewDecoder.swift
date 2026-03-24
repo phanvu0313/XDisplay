@@ -14,6 +14,9 @@ final class H264PreviewDecoder: @unchecked Sendable {
     private let queue = DispatchQueue(label: "com.xdisplay.h264-decoder", qos: .userInitiated)
     private var formatDescription: CMVideoFormatDescription?
     private var decompressionSession: VTDecompressionSession?
+    private var firstFrameTimestamp: Date?
+    private var lastFrameTimestamp: Date?
+    private var lastPresentationTime: CMTime = .zero
 
     func decode(_ frame: EncodedVideoFrame) async throws -> DecodedSampleBuffer {
         try await withCheckedThrowingContinuation { continuation in
@@ -34,6 +37,9 @@ final class H264PreviewDecoder: @unchecked Sendable {
             }
             decompressionSession = nil
             formatDescription = nil
+            firstFrameTimestamp = nil
+            lastFrameTimestamp = nil
+            lastPresentationTime = .zero
         }
     }
 
@@ -56,7 +62,7 @@ final class H264PreviewDecoder: @unchecked Sendable {
             sampleData: parsedPayload.sampleData,
             formatDescription: formatDescription
         )
-        try decodeImage(sampleBuffer: sampleBuffer, continuation: continuation)
+        try decodeImage(sampleBuffer: sampleBuffer, frame: frame, continuation: continuation)
     }
 
     private func updateFormatDescription(sps: Data, pps: Data) throws {
@@ -177,6 +183,7 @@ final class H264PreviewDecoder: @unchecked Sendable {
 
     private func decodeImage(
         sampleBuffer: CMSampleBuffer,
+        frame: EncodedVideoFrame,
         continuation: CheckedContinuation<DecodedSampleBuffer, Error>
     ) throws {
         var infoFlags = VTDecodeInfoFlags()
@@ -192,7 +199,10 @@ final class H264PreviewDecoder: @unchecked Sendable {
             }
 
             do {
-                let outputSampleBuffer = try self.makeImageSampleBuffer(from: imageBuffer)
+                let outputSampleBuffer = try self.makeImageSampleBuffer(
+                    from: imageBuffer,
+                    frameTimestamp: frame.timestamp
+                )
                 continuation.resume(returning: DecodedSampleBuffer(sampleBuffer: outputSampleBuffer))
             } catch {
                 continuation.resume(throwing: error)
@@ -205,7 +215,10 @@ final class H264PreviewDecoder: @unchecked Sendable {
         }
     }
 
-    private func makeImageSampleBuffer(from imageBuffer: CVImageBuffer) throws -> CMSampleBuffer {
+    private func makeImageSampleBuffer(
+        from imageBuffer: CVImageBuffer,
+        frameTimestamp: Date
+    ) throws -> CMSampleBuffer {
         var imageFormatDescription: CMVideoFormatDescription?
         let formatStatus = CMVideoFormatDescriptionCreateForImageBuffer(
             allocator: kCFAllocatorDefault,
@@ -217,11 +230,7 @@ final class H264PreviewDecoder: @unchecked Sendable {
             throw DecoderError.imageFormatDescriptionCreationFailed(formatStatus)
         }
 
-        var timing = CMSampleTimingInfo(
-            duration: .invalid,
-            presentationTimeStamp: CMClockGetTime(CMClockGetHostTimeClock()),
-            decodeTimeStamp: .invalid
-        )
+        var timing = makeSampleTiming(for: frameTimestamp)
 
         var sampleBuffer: CMSampleBuffer?
         let sampleStatus = CMSampleBufferCreateReadyWithImageBuffer(
@@ -236,16 +245,39 @@ final class H264PreviewDecoder: @unchecked Sendable {
             throw DecoderError.imageSampleBufferCreationFailed(sampleStatus)
         }
 
-        if let attachments = CMSampleBufferGetSampleAttachmentsArray(sampleBuffer, createIfNecessary: true) {
-            let attachment = unsafeBitCast(CFArrayGetValueAtIndex(attachments, 0), to: CFMutableDictionary.self)
-            CFDictionarySetValue(
-                attachment,
-                Unmanaged.passUnretained(kCMSampleAttachmentKey_DisplayImmediately).toOpaque(),
-                Unmanaged.passUnretained(kCFBooleanTrue).toOpaque()
+        return sampleBuffer
+    }
+
+    private func makeSampleTiming(for timestamp: Date) -> CMSampleTimingInfo {
+        let defaultDuration = CMTime(value: 1, timescale: 60)
+
+        defer {
+            if firstFrameTimestamp == nil {
+                firstFrameTimestamp = timestamp
+            }
+            lastFrameTimestamp = timestamp
+        }
+
+        guard let firstFrameTimestamp else {
+            lastPresentationTime = .zero
+            return CMSampleTimingInfo(
+                duration: defaultDuration,
+                presentationTimeStamp: .zero,
+                decodeTimeStamp: .invalid
             )
         }
 
-        return sampleBuffer
+        let rawDelta = timestamp.timeIntervalSince(lastFrameTimestamp ?? firstFrameTimestamp)
+        let clampedDelta = min(max(rawDelta, 1.0 / 120.0), 1.0 / 24.0)
+        let duration = CMTime(seconds: clampedDelta, preferredTimescale: 600)
+        let presentationTime = lastPresentationTime + duration
+        lastPresentationTime = presentationTime
+
+        return CMSampleTimingInfo(
+            duration: duration,
+            presentationTimeStamp: presentationTime,
+            decodeTimeStamp: .invalid
+        )
     }
 }
 

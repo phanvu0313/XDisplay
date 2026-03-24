@@ -45,6 +45,7 @@ final class ClientViewerViewModel {
 
         await transport?.stop()
         receiveTask?.cancel()
+        receiveTask = nil
         renderer.reset()
         latestFrame = nil
         try? await Task.sleep(for: .milliseconds(250))
@@ -111,7 +112,7 @@ final class ClientViewerViewModel {
                 }
             }
 
-            AppLogger.transport.info("Client transport stream ended")
+        AppLogger.transport.info("Client transport stream ended")
 
             guard !Task.isCancelled else {
                 return
@@ -196,6 +197,8 @@ final class ClientViewerViewModel {
 
         renderer.reset()
         latestFrame = nil
+        transport = nil
+        receiveTask = nil
         appendLog("Connection ended")
         await sessionController.transition(
             to: .idle,

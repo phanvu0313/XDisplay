@@ -77,54 +77,7 @@ final class H264PreviewEncoder {
 
         reset()
 
-        var session: VTCompressionSession?
-        let status = VTCompressionSessionCreate(
-            allocator: kCFAllocatorDefault,
-            width: Int32(width),
-            height: Int32(height),
-            codecType: kCMVideoCodecType_H264,
-            encoderSpecification: nil,
-            imageBufferAttributes: nil,
-            compressedDataAllocator: nil,
-            outputCallback: compressionOutputCallback,
-            refcon: nil,
-            compressionSessionOut: &session
-        )
-
-        guard status == noErr, let session else {
-            throw EncoderError.sessionCreationFailed(status)
-        }
-
-        try setProperty(kVTCompressionPropertyKey_RealTime, value: kCFBooleanTrue, on: session)
-        try setProperty(kVTCompressionPropertyKey_AllowFrameReordering, value: kCFBooleanFalse, on: session)
-        try setProperty(kVTCompressionPropertyKey_AllowTemporalCompression, value: kCFBooleanFalse, on: session)
-        try setProperty(kVTCompressionPropertyKey_ExpectedFrameRate, value: fps as CFTypeRef, on: session)
-        try setProperty(kVTCompressionPropertyKey_MaxKeyFrameInterval, value: 1 as CFTypeRef, on: session)
-        try setProperty(kVTCompressionPropertyKey_MaxKeyFrameIntervalDuration, value: 1 as CFTypeRef, on: session)
-        try setProperty(
-            kVTCompressionPropertyKey_ProfileLevel,
-            value: kVTProfileLevel_H264_High_AutoLevel,
-            on: session
-        )
-        try setProperty(
-            kVTCompressionPropertyKey_H264EntropyMode,
-            value: kVTH264EntropyMode_CABAC,
-            on: session
-        )
-
-        let bitrate = max(width * height * max(fps, 30) / 2, 80_000_000)
-        try setProperty(kVTCompressionPropertyKey_AverageBitRate, value: bitrate as CFTypeRef, on: session)
-        try setProperty(
-            kVTCompressionPropertyKey_DataRateLimits,
-            value: [bitrate * 4 / 8, 1] as CFArray,
-            on: session
-        )
-        try setProperty(kVTCompressionPropertyKey_Quality, value: 1.0 as CFTypeRef, on: session)
-
-        let prepareStatus = VTCompressionSessionPrepareToEncodeFrames(session)
-        guard prepareStatus == noErr else {
-            throw EncoderError.prepareFailed(prepareStatus)
-        }
+        let session = try createAndConfigureCompressionSession(width: width, height: height, fps: fps)
 
         compressionSession = session
         configuredWidth = width
@@ -132,9 +85,144 @@ final class H264PreviewEncoder {
         configuredFPS = fps
     }
 
+    private func createAndConfigureCompressionSession(width: Int, height: Int, fps: Int) throws -> VTCompressionSession {
+        let configurationAttempts: [(VTCompressionSession) throws -> Void] = [
+            { session in
+                try self.applySmoothConfiguration(to: session, width: width, height: height, fps: fps)
+            },
+            { session in
+                try self.applyCompatibilityConfiguration(to: session, width: width, height: height, fps: fps)
+            }
+        ]
+
+        var lastError: Error?
+
+        for configure in configurationAttempts {
+            let session = try createCompressionSession(width: width, height: height)
+
+            do {
+                try configure(session)
+
+                let prepareStatus = VTCompressionSessionPrepareToEncodeFrames(session)
+                guard prepareStatus == noErr else {
+                    throw EncoderError.prepareFailed(prepareStatus)
+                }
+
+                return session
+            } catch {
+                lastError = error
+                VTCompressionSessionInvalidate(session)
+            }
+        }
+
+        throw lastError ?? EncoderError.prepareFailed(OSStatus(paramErr))
+    }
+
+    private func applySmoothConfiguration(
+        to session: VTCompressionSession,
+        width: Int,
+        height: Int,
+        fps: Int
+    ) throws {
+        try setProperty(kVTCompressionPropertyKey_RealTime, value: kCFBooleanTrue, on: session)
+        try setProperty(kVTCompressionPropertyKey_AllowFrameReordering, value: kCFBooleanFalse, on: session)
+        try setProperty(kVTCompressionPropertyKey_AllowTemporalCompression, value: kCFBooleanTrue, on: session)
+        try setProperty(kVTCompressionPropertyKey_ExpectedFrameRate, value: fps as CFTypeRef, on: session)
+        try setProperty(kVTCompressionPropertyKey_MaxKeyFrameInterval, value: 8 as CFTypeRef, on: session)
+        try setProperty(kVTCompressionPropertyKey_MaxKeyFrameIntervalDuration, value: 1 as CFTypeRef, on: session)
+        try? setOptionalProperty(kVTCompressionPropertyKey_BaseLayerFrameRateFraction, value: 1.0 as CFTypeRef, on: session)
+        try? setOptionalProperty(
+            kVTCompressionPropertyKey_ProfileLevel,
+            value: kVTProfileLevel_H264_High_AutoLevel,
+            on: session
+        )
+        try? setOptionalProperty(
+            kVTCompressionPropertyKey_H264EntropyMode,
+            value: kVTH264EntropyMode_CABAC,
+            on: session
+        )
+
+        let bitrate = max(width * height * max(fps, 30) / 3, 60_000_000)
+        try? setOptionalProperty(kVTCompressionPropertyKey_AverageBitRate, value: bitrate as CFTypeRef, on: session)
+        try? setOptionalProperty(
+            kVTCompressionPropertyKey_DataRateLimits,
+            value: [bitrate * 2 / 8, 1] as CFArray,
+            on: session
+        )
+        try? setOptionalProperty(kVTCompressionPropertyKey_Quality, value: 0.9 as CFTypeRef, on: session)
+        try? setOptionalProperty(
+            kVTCompressionPropertyKey_PrioritizeEncodingSpeedOverQuality,
+            value: kCFBooleanFalse,
+            on: session
+        )
+    }
+
+    private func applyCompatibilityConfiguration(
+        to session: VTCompressionSession,
+        width: Int,
+        height: Int,
+        fps: Int
+    ) throws {
+        try setProperty(kVTCompressionPropertyKey_RealTime, value: kCFBooleanTrue, on: session)
+        try setProperty(kVTCompressionPropertyKey_AllowFrameReordering, value: kCFBooleanFalse, on: session)
+        try setProperty(kVTCompressionPropertyKey_ExpectedFrameRate, value: fps as CFTypeRef, on: session)
+        try setProperty(kVTCompressionPropertyKey_MaxKeyFrameInterval, value: 30 as CFTypeRef, on: session)
+        try setProperty(kVTCompressionPropertyKey_MaxKeyFrameIntervalDuration, value: 2 as CFTypeRef, on: session)
+
+        let bitrate = max(width * height * max(fps, 30) / 6, 25_000_000)
+        try? setOptionalProperty(kVTCompressionPropertyKey_AverageBitRate, value: bitrate as CFTypeRef, on: session)
+        try? setOptionalProperty(kVTCompressionPropertyKey_Quality, value: 0.7 as CFTypeRef, on: session)
+    }
+
+    private func createCompressionSession(width: Int, height: Int) throws -> VTCompressionSession {
+        let specifications: [[CFString: Any]?] = [
+            [
+                kVTVideoEncoderSpecification_EnableLowLatencyRateControl: true,
+                kVTVideoEncoderSpecification_RequireHardwareAcceleratedVideoEncoder: true
+            ],
+            [
+                kVTVideoEncoderSpecification_EnableHardwareAcceleratedVideoEncoder: true
+            ],
+            nil
+        ]
+
+        var lastStatus: OSStatus = noErr
+
+        for specification in specifications {
+            var session: VTCompressionSession?
+            let status = VTCompressionSessionCreate(
+                allocator: kCFAllocatorDefault,
+                width: Int32(width),
+                height: Int32(height),
+                codecType: kCMVideoCodecType_H264,
+                encoderSpecification: specification as CFDictionary?,
+                imageBufferAttributes: nil,
+                compressedDataAllocator: nil,
+                outputCallback: compressionOutputCallback,
+                refcon: nil,
+                compressionSessionOut: &session
+            )
+
+            if status == noErr, let session {
+                return session
+            }
+
+            lastStatus = status
+        }
+
+        throw EncoderError.sessionCreationFailed(lastStatus)
+    }
+
     private func setProperty(_ key: CFString, value: CFTypeRef, on session: VTCompressionSession) throws {
         let status = VTSessionSetProperty(session, key: key, value: value)
         guard status == noErr else {
+            throw EncoderError.propertySetFailed(status)
+        }
+    }
+
+    private func setOptionalProperty(_ key: CFString, value: CFTypeRef, on session: VTCompressionSession) throws {
+        let status = VTSessionSetProperty(session, key: key, value: value)
+        guard status == noErr || status == kVTPropertyNotSupportedErr || status == kVTPropertyReadOnlyErr else {
             throw EncoderError.propertySetFailed(status)
         }
     }
