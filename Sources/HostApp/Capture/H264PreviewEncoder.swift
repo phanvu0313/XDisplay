@@ -9,11 +9,13 @@ final class H264PreviewEncoder {
     private var configuredWidth = 0
     private var configuredHeight = 0
     private var configuredFPS = 0
+    private var configuredQualityPreset: StreamQualityPreset = .lowLatency
 
     func encode(
         image: CGImage,
         frameIndex: Int,
-        fps: Int
+        fps: Int,
+        qualityPreset: StreamQualityPreset
     ) async throws -> EncodedVideoFrame {
         let pixelBuffer = try makePixelBuffer(from: image)
         return try await encode(
@@ -21,7 +23,8 @@ final class H264PreviewEncoder {
             width: image.width,
             height: image.height,
             frameIndex: frameIndex,
-            fps: fps
+            fps: fps,
+            qualityPreset: qualityPreset
         )
     }
 
@@ -30,9 +33,10 @@ final class H264PreviewEncoder {
         width: Int,
         height: Int,
         frameIndex: Int,
-        fps: Int
+        fps: Int,
+        qualityPreset: StreamQualityPreset
     ) async throws -> EncodedVideoFrame {
-        try prepareIfNeeded(width: width, height: height, fps: fps)
+        try prepareIfNeeded(width: width, height: height, fps: fps, qualityPreset: qualityPreset)
         let presentationTime = CMTime(value: Int64(frameIndex), timescale: CMTimeScale(max(1, fps)))
 
         return try await withCheckedThrowingContinuation { continuation in
@@ -68,27 +72,51 @@ final class H264PreviewEncoder {
         configuredWidth = 0
         configuredHeight = 0
         configuredFPS = 0
+        configuredQualityPreset = .lowLatency
     }
 
-    private func prepareIfNeeded(width: Int, height: Int, fps: Int) throws {
-        guard compressionSession == nil || width != configuredWidth || height != configuredHeight || fps != configuredFPS else {
+    private func prepareIfNeeded(width: Int, height: Int, fps: Int, qualityPreset: StreamQualityPreset) throws {
+        guard
+            compressionSession == nil ||
+            width != configuredWidth ||
+            height != configuredHeight ||
+            fps != configuredFPS ||
+            qualityPreset != configuredQualityPreset
+        else {
             return
         }
 
         reset()
 
-        let session = try createAndConfigureCompressionSession(width: width, height: height, fps: fps)
+        let session = try createAndConfigureCompressionSession(
+            width: width,
+            height: height,
+            fps: fps,
+            qualityPreset: qualityPreset
+        )
 
         compressionSession = session
         configuredWidth = width
         configuredHeight = height
         configuredFPS = fps
+        configuredQualityPreset = qualityPreset
     }
 
-    private func createAndConfigureCompressionSession(width: Int, height: Int, fps: Int) throws -> VTCompressionSession {
+    private func createAndConfigureCompressionSession(
+        width: Int,
+        height: Int,
+        fps: Int,
+        qualityPreset: StreamQualityPreset
+    ) throws -> VTCompressionSession {
         let configurationAttempts: [(VTCompressionSession) throws -> Void] = [
             { session in
-                try self.applySmoothConfiguration(to: session, width: width, height: height, fps: fps)
+                try self.applyProfileConfiguration(
+                    qualityPreset,
+                    to: session,
+                    width: width,
+                    height: height,
+                    fps: fps
+                )
             },
             { session in
                 try self.applyCompatibilityConfiguration(to: session, width: width, height: height, fps: fps)
@@ -118,7 +146,8 @@ final class H264PreviewEncoder {
         throw lastError ?? EncoderError.prepareFailed(OSStatus(paramErr))
     }
 
-    private func applySmoothConfiguration(
+    private func applyProfileConfiguration(
+        _ qualityPreset: StreamQualityPreset,
         to session: VTCompressionSession,
         width: Int,
         height: Int,
@@ -126,7 +155,6 @@ final class H264PreviewEncoder {
     ) throws {
         try setProperty(kVTCompressionPropertyKey_RealTime, value: kCFBooleanTrue, on: session)
         try setProperty(kVTCompressionPropertyKey_AllowFrameReordering, value: kCFBooleanFalse, on: session)
-        try setProperty(kVTCompressionPropertyKey_AllowTemporalCompression, value: kCFBooleanTrue, on: session)
         try setProperty(kVTCompressionPropertyKey_ExpectedFrameRate, value: fps as CFTypeRef, on: session)
         try setProperty(kVTCompressionPropertyKey_MaxKeyFrameInterval, value: 8 as CFTypeRef, on: session)
         try setProperty(kVTCompressionPropertyKey_MaxKeyFrameIntervalDuration, value: 1 as CFTypeRef, on: session)
@@ -142,19 +170,49 @@ final class H264PreviewEncoder {
             on: session
         )
 
-        let bitrate = max(width * height * max(fps, 30) / 3, 60_000_000)
+        let bitrate: Int
+        let quality: Double
+        let keyframeInterval: Int
+        let temporalCompression: CFBoolean
+        let speedPriority: CFBoolean
+        let dataRateBurstMultiplier: Int
+
+        switch qualityPreset {
+        case .lowLatency:
+            bitrate = max(width * height * max(fps, 30) / 4, 34_000_000)
+            quality = 0.76
+            keyframeInterval = 12
+            temporalCompression = kCFBooleanTrue
+            speedPriority = kCFBooleanTrue
+            dataRateBurstMultiplier = 2
+        case .balanced:
+            bitrate = max(width * height * max(fps, 30) / 3, 56_000_000)
+            quality = 0.88
+            keyframeInterval = 8
+            temporalCompression = kCFBooleanTrue
+            speedPriority = kCFBooleanFalse
+            dataRateBurstMultiplier = 3
+        case .sharp:
+            bitrate = max(width * height * max(fps, 30) / 2, 92_000_000)
+            quality = 0.97
+            keyframeInterval = 4
+            temporalCompression = kCFBooleanFalse
+            speedPriority = kCFBooleanFalse
+            dataRateBurstMultiplier = 4
+        }
+
+        try setProperty(kVTCompressionPropertyKey_AllowTemporalCompression, value: temporalCompression, on: session)
+        try setProperty(kVTCompressionPropertyKey_MaxKeyFrameInterval, value: keyframeInterval as CFTypeRef, on: session)
+        try? setOptionalProperty(kVTCompressionPropertyKey_MaxKeyFrameIntervalDuration, value: 1 as CFTypeRef, on: session)
+
         try? setOptionalProperty(kVTCompressionPropertyKey_AverageBitRate, value: bitrate as CFTypeRef, on: session)
         try? setOptionalProperty(
             kVTCompressionPropertyKey_DataRateLimits,
-            value: [bitrate * 2 / 8, 1] as CFArray,
+            value: [bitrate * dataRateBurstMultiplier / 8, 1] as CFArray,
             on: session
         )
-        try? setOptionalProperty(kVTCompressionPropertyKey_Quality, value: 0.9 as CFTypeRef, on: session)
-        try? setOptionalProperty(
-            kVTCompressionPropertyKey_PrioritizeEncodingSpeedOverQuality,
-            value: kCFBooleanFalse,
-            on: session
-        )
+        try? setOptionalProperty(kVTCompressionPropertyKey_Quality, value: quality as CFTypeRef, on: session)
+        try? setOptionalProperty(kVTCompressionPropertyKey_PrioritizeEncodingSpeedOverQuality, value: speedPriority, on: session)
     }
 
     private func applyCompatibilityConfiguration(

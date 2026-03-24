@@ -60,6 +60,7 @@
 		C9659B7B09EE7FC475A350D1 /* LoopbackTransport.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E8A79F31F7BD77A454E63D /* LoopbackTransport.swift */; };
 		CA67FA2C6A49C0EACB57580D /* ClientRootHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30424A1D9E053916FF4BAA24 /* ClientRootHostingController.swift */; };
 		CAD15B1D55DD06E0D186EACC /* AppLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC6C1C45A4FA34C132E19082 /* AppLogger.swift */; };
+		D0499E0131AA5E7501CD11D5 /* HostResolutionOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1578CBF523688BAF8E983021 /* HostResolutionOption.swift */; };
 		D6FE32C49FEE532B42B33DD8 /* LoopbackTransport.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E8A79F31F7BD77A454E63D /* LoopbackTransport.swift */; };
 		DC3E4915FE8589216345B1CB /* Transport.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA2D8298E141E96FFECB2D0 /* Transport.swift */; };
 		DF0479FEB26438623971F319 /* XDisplayHostApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B03C254251F11C9D9F5D432 /* XDisplayHostApp.swift */; };
@@ -67,6 +68,7 @@
 		E4910B722EE4822417127AD6 /* ClientSceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 717CF563158CAA6DAA1FB0D6 /* ClientSceneDelegate.swift */; };
 		EC8DADEA82FE6CC90875E4DB /* WiredControlChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D702821E6BE1B687C9A4225 /* WiredControlChannel.swift */; };
 		F0BEDE77B8BF7D540B2892D8 /* LoopbackBroker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B742B8FACE0868C9EBE6CA /* LoopbackBroker.swift */; };
+		F0CDF1BA3FF631FE45BA70BD /* HostPerformanceProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952F19BF4A6C82C9F21E06A3 /* HostPerformanceProfile.swift */; };
 		F14DE4E21A16452DC8CDCBD5 /* ClientControlPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D100C626AC2FAE06A633883E /* ClientControlPanel.swift */; };
 		F30C62C80E8EACAC3D954113 /* TransportError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AED3EB07A5DCB9507393779 /* TransportError.swift */; };
 		F45CCFE473EBDA47218A2A56 /* SessionPhases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1756DD32553B4A491B7820C5 /* SessionPhases.swift */; };
@@ -82,6 +84,7 @@
 		0B0F19CCEF6EBC53AF37C4C0 /* H264PreviewDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = H264PreviewDecoder.swift; sourceTree = "<group>"; };
 		0D702821E6BE1B687C9A4225 /* WiredControlChannel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WiredControlChannel.swift; sourceTree = "<group>"; };
 		0F067FCCCA10E03CBCF11B53 /* ScreenCapturePermissionCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenCapturePermissionCoordinator.swift; sourceTree = "<group>"; };
+		1578CBF523688BAF8E983021 /* HostResolutionOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostResolutionOption.swift; sourceTree = "<group>"; };
 		158ACE66CB34893A10D1C4F1 /* DisplaySessionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplaySessionController.swift; sourceTree = "<group>"; };
 		1756DD32553B4A491B7820C5 /* SessionPhases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionPhases.swift; sourceTree = "<group>"; };
 		17D56B04F4DBAB7B4DD47399 /* ClientStatusBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientStatusBanner.swift; sourceTree = "<group>"; };
@@ -106,6 +109,7 @@
 		8C050B55745CF8A1A63A21E2 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8CEAFB434F7BED7F473E3357 /* NetworkTransport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkTransport.swift; sourceTree = "<group>"; };
 		93DAF15EAA7572BA197E33A3 /* XDisplayClientApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XDisplayClientApp.swift; sourceTree = "<group>"; };
+		952F19BF4A6C82C9F21E06A3 /* HostPerformanceProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostPerformanceProfile.swift; sourceTree = "<group>"; };
 		9AED3EB07A5DCB9507393779 /* TransportError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransportError.swift; sourceTree = "<group>"; };
 		A0B8367F299AFDE18DB1D26C /* XDisplayHost.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XDisplayHost.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9B742B8FACE0868C9EBE6CA /* LoopbackBroker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoopbackBroker.swift; sourceTree = "<group>"; };
@@ -166,6 +170,8 @@
 			children = (
 				44CABFB11D5DF0975B35C044 /* HostDashboardView.swift */,
 				E4238A4CEAC036C062E01572 /* HostDashboardViewModel.swift */,
+				952F19BF4A6C82C9F21E06A3 /* HostPerformanceProfile.swift */,
+				1578CBF523688BAF8E983021 /* HostResolutionOption.swift */,
 			);
 			path = Dashboard;
 			sourceTree = "<group>";
@@ -447,6 +453,8 @@
 				F7C7C9618E9026CED7E6922D /* H264PreviewEncoder.swift in Sources */,
 				696C7E175A136360F6BCA7F1 /* HostDashboardView.swift in Sources */,
 				A787923914620F9F9A969F0A /* HostDashboardViewModel.swift in Sources */,
+				F0CDF1BA3FF631FE45BA70BD /* HostPerformanceProfile.swift in Sources */,
+				D0499E0131AA5E7501CD11D5 /* HostResolutionOption.swift in Sources */,
 				F0BEDE77B8BF7D540B2892D8 /* LoopbackBroker.swift in Sources */,
 				D6FE32C49FEE532B42B33DD8 /* LoopbackTransport.swift in Sources */,
 				41674ABF3BB0DAC04BB5BA30 /* MockFrameDescriptor.swift in Sources */,

@@ -140,7 +140,8 @@ final class ScreenCaptureCoordinator {
                 width: width,
                 height: height,
                 frameIndex: frameIndex,
-                fps: min(configuration.targetFPS, PreviewLimits.maxFPS)
+                fps: min(configuration.targetFPS, PreviewLimits.maxFPS),
+                qualityPreset: configuration.quality
             )
             lastPreviewFrame = frame
             return frame
@@ -252,10 +253,18 @@ final class ScreenCaptureCoordinator {
         let heightRatio = CGFloat(maxHeight) / CGFloat(sourceHeight)
         let scale = min(widthRatio, heightRatio, 1)
 
+        let scaledWidth = max(2, Int(CGFloat(sourceWidth) * scale))
+        let scaledHeight = max(2, Int(CGFloat(sourceHeight) * scale))
+
         return CGSize(
-            width: max(1, Int(CGFloat(sourceWidth) * scale)),
-            height: max(1, Int(CGFloat(sourceHeight) * scale))
+            width: alignedEvenDimension(scaledWidth),
+            height: alignedEvenDimension(scaledHeight)
         )
+    }
+
+    private func alignedEvenDimension(_ value: Int) -> Int {
+        let evenValue = value.isMultiple(of: 2) ? value : value - 1
+        return max(2, evenValue)
     }
 
     private func cgImage(from pixelBuffer: CVPixelBuffer) throws -> CGImage {

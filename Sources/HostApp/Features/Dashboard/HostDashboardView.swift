@@ -4,71 +4,119 @@ struct HostDashboardView: View {
     @State private var viewModel = HostDashboardViewModel()
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 18) {
-            HStack(alignment: .center, spacing: 16) {
-                VStack(alignment: .leading, spacing: 6) {
-                    Text("XDisplay Host")
-                        .font(.system(size: 28, weight: .bold))
-                    Text("USB Extended Display")
-                        .font(.subheadline)
-                        .foregroundStyle(.secondary)
+        ZStack {
+            LinearGradient(
+                colors: [
+                    Color(nsColor: .windowBackgroundColor),
+                    Color(nsColor: .underPageBackgroundColor)
+                ],
+                startPoint: .topLeading,
+                endPoint: .bottomTrailing
+            )
+            .ignoresSafeArea()
+
+            VStack(alignment: .leading, spacing: 16) {
+                HStack(spacing: 14) {
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text("XDisplay Host")
+                            .font(.system(size: 24, weight: .bold))
+                        Text("USB Extended Display")
+                            .font(.system(size: 12, weight: .medium))
+                            .foregroundStyle(.secondary)
+                    }
+
+                    Spacer()
+                    statusPill
                 }
 
-                Spacer()
+                HStack(spacing: 12) {
+                    compactCard(
+                        title: "Device",
+                        value: viewModel.connectedClientDevice?.name ?? "Waiting for iPhone",
+                        detail: viewModel.connectedClientDevice?.model ?? "USB ready"
+                    )
 
-                statusPill
-            }
-
-            HStack(spacing: 16) {
-                infoCard(
-                    title: "Status",
-                    value: viewModel.state.statusText,
-                    detail: "\(viewModel.state.configuration.width)×\(viewModel.state.configuration.height) • \(viewModel.state.configuration.targetFPS) FPS"
-                )
-
-                infoCard(
-                    title: "Device",
-                    value: viewModel.connectedDeviceSummary,
-                    detail: viewModel.lastConnectedAt.map { "Updated \($0.formatted(date: .omitted, time: .shortened))" } ?? "Waiting for iPhone"
-                )
-            }
-
-            HStack(spacing: 12) {
-                Button("Start") {
-                    Task { await viewModel.startSession() }
+                    compactCard(
+                        title: "Stream",
+                        value: "\(viewModel.state.configuration.width)×\(viewModel.state.configuration.height)",
+                        detail: "\(viewModel.state.configuration.targetFPS) FPS • \(viewModel.selectedPerformanceProfile.title)"
+                    )
                 }
-                .buttonStyle(.borderedProminent)
-                .controlSize(.large)
-                .disabled(viewModel.isStreamingOrPreparing)
 
-                Button("Stop") {
-                    Task { await viewModel.stopSession() }
-                }
-                .buttonStyle(.bordered)
-                .controlSize(.large)
-                .disabled(!viewModel.isStreamingOrPreparing)
-            }
-
-            GroupBox("Recent Log") {
-                ScrollView {
-                    LazyVStack(alignment: .leading, spacing: 10) {
-                        ForEach(viewModel.eventLog) { entry in
-                            VStack(alignment: .leading, spacing: 2) {
-                                Text(entry.timestamp.formatted(date: .omitted, time: .standard))
-                                    .font(.caption)
-                                    .foregroundStyle(.secondary)
-                                Text(entry.message)
-                                    .frame(maxWidth: .infinity, alignment: .leading)
-                            }
-                            .padding(.vertical, 2)
+                controlSection(
+                    title: "Profile",
+                    subtitle: viewModel.selectedProfileSummary
+                ) {
+                    Picker("Profile", selection: $viewModel.selectedPerformanceProfile) {
+                        ForEach(HostPerformanceProfile.allCases) { profile in
+                            Text(profile.title).tag(profile)
                         }
                     }
+                    .pickerStyle(.segmented)
+                    .disabled(viewModel.isStreamingOrPreparing)
                 }
-                .frame(maxWidth: .infinity, minHeight: 150, maxHeight: 220)
+
+                controlSection(
+                    title: "Resolution",
+                    subtitle: "iPhone ratio • \(viewModel.selectedResolutionSummary)"
+                ) {
+                    Picker("Resolution", selection: $viewModel.selectedResolutionOption) {
+                        ForEach(HostResolutionOption.allCases) { option in
+                            Text(option.title).tag(option)
+                        }
+                    }
+                    .pickerStyle(.segmented)
+                    .disabled(viewModel.isStreamingOrPreparing)
+                }
+
+                HStack(spacing: 10) {
+                    Button("Start") {
+                        Task { await viewModel.startSession() }
+                    }
+                    .buttonStyle(.borderedProminent)
+                    .controlSize(.large)
+                    .disabled(viewModel.isStreamingOrPreparing)
+
+                    Button("Stop") {
+                        Task { await viewModel.stopSession() }
+                    }
+                    .buttonStyle(.bordered)
+                    .controlSize(.large)
+                    .disabled(!viewModel.isStreamingOrPreparing)
+
+                    Spacer()
+
+                    Text(viewModel.state.statusText)
+                        .font(.system(size: 12, weight: .medium))
+                        .foregroundStyle(.secondary)
+                        .lineLimit(1)
+                }
+
+                GroupBox {
+                    ScrollView {
+                        LazyVStack(alignment: .leading, spacing: 8) {
+                            ForEach(viewModel.visibleEventLog.prefix(6)) { entry in
+                                HStack(alignment: .top, spacing: 10) {
+                                    Text(entry.timestamp.formatted(date: .omitted, time: .standard))
+                                        .font(.system(size: 11, weight: .medium, design: .monospaced))
+                                        .foregroundStyle(.secondary)
+                                    Text(entry.message)
+                                        .font(.system(size: 12))
+                                        .frame(maxWidth: .infinity, alignment: .leading)
+                                }
+                            }
+                        }
+                    }
+                    .frame(maxWidth: .infinity, minHeight: 78, maxHeight: 108)
+                } label: {
+                    Text("Activity")
+                        .font(.system(size: 12, weight: .semibold))
+                        .foregroundStyle(.secondary)
+                }
             }
+            .padding(20)
+            .frame(minWidth: 500, idealWidth: 520, maxWidth: 560, minHeight: 340)
         }
-        .padding(24)
-        .frame(minWidth: 620, minHeight: 380)
     }
 
     private var statusPill: some View {
@@ -80,22 +128,39 @@ struct HostDashboardView: View {
             .foregroundStyle(statusTint)
     }
 
-    private func infoCard(title: String, value: String, detail: String) -> some View {
+    private func compactCard(title: String, value: String, detail: String) -> some View {
         VStack(alignment: .leading, spacing: 6) {
             Text(title)
-                .font(.caption)
+                .font(.system(size: 11, weight: .semibold))
                 .foregroundStyle(.secondary)
             Text(value)
-                .font(.headline)
+                .font(.system(size: 15, weight: .semibold))
                 .lineLimit(2)
             Text(detail)
-                .font(.subheadline)
+                .font(.system(size: 12))
                 .foregroundStyle(.secondary)
                 .lineLimit(2)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
-        .padding(16)
-        .background(Color(nsColor: .controlBackgroundColor), in: RoundedRectangle(cornerRadius: 14))
+        .padding(14)
+        .background(Color(nsColor: .controlBackgroundColor), in: RoundedRectangle(cornerRadius: 16))
+    }
+
+    private func controlSection<Content: View>(title: String, subtitle: String, @ViewBuilder content: () -> Content) -> some View {
+        VStack(alignment: .leading, spacing: 10) {
+            HStack(alignment: .firstTextBaseline) {
+                Text(title)
+                    .font(.system(size: 13, weight: .semibold))
+                Spacer()
+                Text(subtitle)
+                    .font(.system(size: 12))
+                    .foregroundStyle(.secondary)
+            }
+
+            content()
+        }
+        .padding(14)
+        .background(Color(nsColor: .controlBackgroundColor), in: RoundedRectangle(cornerRadius: 16))
     }
 
     private var statusTint: Color {

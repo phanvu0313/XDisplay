@@ -33,11 +33,15 @@ struct UnimplementedVirtualDisplayProvider: VirtualDisplayProvider {
 @MainActor
 final class ExperimentalVirtualDisplayProvider: VirtualDisplayProvider {
     private var session: XDVVirtualDisplaySession?
+    private var activeConfiguration: DisplaySessionConfiguration?
 
     func prepare(configuration: DisplaySessionConfiguration) async throws -> UInt32 {
-        if let session {
+        if let session, activeConfiguration == configuration {
             return session.displayID
         }
+
+        session = nil
+        activeConfiguration = nil
 
         let candidates: [(width: UInt32, height: UInt32, refreshRate: Double)] = [
             (UInt32(max(configuration.width, 1280)), UInt32(max(configuration.height, 720)), max(Double(configuration.targetFPS), 60)),
@@ -59,6 +63,7 @@ final class ExperimentalVirtualDisplayProvider: VirtualDisplayProvider {
 
             if error == nil {
                 self.session = session
+                self.activeConfiguration = configuration
                 return session.displayID
             }
 

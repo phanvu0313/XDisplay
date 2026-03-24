@@ -35,7 +35,7 @@ final class ExtendedDisplayGuideWindowController {
 
     private func makeWindow() -> NSWindow {
         let window = NSWindow(
-            contentRect: NSRect(x: 0, y: 0, width: 620, height: 260),
+            contentRect: NSRect(x: 0, y: 0, width: 620, height: 220),
             styleMask: [.titled, .closable],
             backing: .buffered,
             defer: false
@@ -61,89 +61,53 @@ final class ExtendedDisplayGuideWindowController {
 
 private struct ExtendedDisplayGuideView: View {
     var body: some View {
-        TimelineView(.animation(minimumInterval: 1.0 / 12.0)) { context in
-            let t = context.date.timeIntervalSinceReferenceDate
-            let phase = t.truncatingRemainder(dividingBy: 1.0)
-            let hue = t.truncatingRemainder(dividingBy: 12.0) / 12.0
+        ZStack {
+            LinearGradient(
+                colors: [
+                    Color(red: 0.95, green: 0.97, blue: 1.0),
+                    Color.white
+                ],
+                startPoint: .topLeading,
+                endPoint: .bottomTrailing
+            )
 
-            ZStack {
-                LinearGradient(
-                    colors: [
-                        Color(hue: hue, saturation: 0.22, brightness: 1.0),
-                        Color.white
-                    ],
-                    startPoint: .topLeading,
-                    endPoint: .bottomTrailing
-                )
+            VStack(alignment: .leading, spacing: 20) {
+                Text("XDisplay Live")
+                    .font(.system(size: 34, weight: .bold))
+                    .foregroundStyle(.black)
 
-                VStack(alignment: .leading, spacing: 20) {
-                    HStack(alignment: .firstTextBaseline) {
-                        Text("XDisplay Live")
-                            .font(.system(size: 32, weight: .bold))
-                            .foregroundStyle(.black)
-
-                        Spacer()
-
-                        Text(context.date.formatted(date: .omitted, time: .standard))
-                            .font(.system(size: 20, weight: .semibold, design: .monospaced))
-                            .foregroundStyle(.black.opacity(0.72))
-                    }
-
-                    Text("This window is rendered on the virtual extended display. The moving bar and clock should animate on iPhone if the stream is live.")
-                        .font(.system(size: 18, weight: .medium))
-                        .foregroundStyle(Color.black.opacity(0.72))
-
-                    GeometryReader { proxy in
-                        let width = max(proxy.size.width - 88, 1)
-                        let x = 24 + width * phase
-
-                        ZStack(alignment: .leading) {
-                            RoundedRectangle(cornerRadius: 20)
-                                .fill(Color.black.opacity(0.08))
-                                .frame(height: 72)
-
-                            RoundedRectangle(cornerRadius: 18)
-                                .fill(
-                                    LinearGradient(
-                                        colors: [
-                                            Color(hue: hue, saturation: 0.72, brightness: 0.96),
-                                            Color.black.opacity(0.85)
-                                        ],
-                                        startPoint: .leading,
-                                        endPoint: .trailing
-                                    )
-                                )
-                                .frame(width: 64, height: 56)
-                                .offset(x: x)
-                        }
-                    }
-                    .frame(height: 72)
-
-                    HStack(spacing: 16) {
-                        GuideBadge(label: "Extended", systemImage: "display.2")
-                        GuideBadge(label: "Cable", systemImage: "cable.connector")
-                        GuideBadge(label: "Live", systemImage: "waveform.path.ecg")
-                    }
-
-                    Spacer(minLength: 0)
+                HStack(spacing: 14) {
+                    GuideInfoBox(title: "Display", value: "Extended", systemImage: "display.2")
+                    GuideInfoBox(title: "Link", value: "USB", systemImage: "cable.connector")
+                    GuideInfoBox(title: "Stream", value: "H.264", systemImage: "video")
+                    GuideInfoBox(title: "Status", value: "Ready", systemImage: "checkmark.circle")
                 }
-                .padding(28)
-                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+
+                Spacer(minLength: 0)
             }
+            .padding(28)
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
         }
     }
 }
 
-private struct GuideBadge: View {
-    let label: String
+private struct GuideInfoBox: View {
+    let title: String
+    let value: String
     let systemImage: String
 
     var body: some View {
-        Label(label, systemImage: systemImage)
-            .font(.system(size: 14, weight: .semibold))
-            .padding(.horizontal, 12)
-            .padding(.vertical, 8)
-            .background(Color.white.opacity(0.88), in: Capsule())
-            .foregroundStyle(.black.opacity(0.82))
+        VStack(alignment: .leading, spacing: 8) {
+            Label(title, systemImage: systemImage)
+                .font(.system(size: 12, weight: .semibold))
+                .foregroundStyle(.secondary)
+
+            Text(value)
+                .font(.system(size: 18, weight: .bold))
+                .foregroundStyle(.black)
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(16)
+        .background(Color.white.opacity(0.88), in: RoundedRectangle(cornerRadius: 18))
     }
 }

@@ -17,6 +17,8 @@ final class HostDashboardViewModel {
 
     private(set) var state = DisplaySessionState(role: .host)
     private(set) var selectedTransportMode: TransportMode = .wiredUSB
+    var selectedPerformanceProfile: HostPerformanceProfile = .balanced
+    var selectedResolutionOption: HostResolutionOption = .native
     private(set) var eventLog: [EventLogEntry] = []
     private var transport: (any Transport)?
     private var receiveTask: Task<Void, Never>?
@@ -27,6 +29,18 @@ final class HostDashboardViewModel {
     private var activeCaptureDisplayID: UInt32?
     private(set) var connectedClientDevice: DeviceDescriptor?
     private(set) var lastConnectedAt: Date?
+
+    var selectedProfileSummary: String {
+        selectedPerformanceProfile.summary
+    }
+
+    var selectedResolutionSummary: String {
+        selectedResolutionOption.summary
+    }
+
+    var visibleEventLog: [EventLogEntry] {
+        eventLog.filter(\.isImportantEvent)
+    }
 
     var isStreamingOrPreparing: Bool {
         switch state.connectionState {
@@ -279,15 +293,16 @@ final class HostDashboardViewModel {
     private func preferredConfiguration(for transportMode: TransportMode) -> DisplaySessionConfiguration {
         switch transportMode {
         case .wiredUSB:
-            DisplaySessionConfiguration(
-                width: 1920,
-                height: 886,
-                targetFPS: 60,
+            let resolution = selectedResolutionOption.dimensions
+            return DisplaySessionConfiguration(
+                width: resolution.width,
+                height: resolution.height,
+                targetFPS: selectedPerformanceProfile.targetFPS,
                 codec: .h264,
-                quality: .lowLatency
+                quality: selectedPerformanceProfile.qualityPreset
             )
         case .loopback, .network:
-            state.configuration
+            return state.configuration
         }
     }
 
@@ -381,5 +396,36 @@ private extension DisplaySessionConfiguration {
             statusText: statusText,
             configuration: self
         )
+    }
+}
+
+private extension EventLogEntry {
+    var isImportantEvent: Bool {
+        let normalized = message.lowercased()
+        let ignoredPrefixes = [
+            "sent ",
+            "heartbeat ",
+            "starting preview frame stream"
+        ]
+
+        if ignoredPrefixes.contains(where: { normalized.hasPrefix($0) }) {
+            return false
+        }
+
+        let importantMarkers = [
+            "preparing",
+            "virtual display",
+            "client hello",
+            "accepted",
+            "stream started",
+            "stopped",
+            "failed",
+            "blocked",
+            "ready",
+            "configuration",
+            "recovery"
+        ]
+
+        return importantMarkers.contains { normalized.contains($0) }
     }
 }
