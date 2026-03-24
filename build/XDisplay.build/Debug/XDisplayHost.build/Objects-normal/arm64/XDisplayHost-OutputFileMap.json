@@ -1,0 +1,229 @@
+{
+  "" : {
+    "diagnostics" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/XDisplayHost-primary.dia",
+    "emit-module-dependencies" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/XDisplayHost-primary-emit-module.d",
+    "emit-module-diagnostics" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/XDisplayHost-primary-emit-module.dia",
+    "pch" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/XDisplayHost-primary-Bridging-header.pch",
+    "swift-dependencies" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/XDisplayHost-primary.swiftdeps"
+  },
+  "/Users/macbookprom1/Desktop/EDisplay/Sources/DisplayCore/Logging/AppLogger.swift" : {
+    "const-values" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/AppLogger.swiftconstvalues",
+    "dependencies" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/AppLogger.d",
+    "diagnostics" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/AppLogger.dia",
+    "index-unit-output-path" : "/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/AppLogger.o",
+    "llvm-bc" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/AppLogger.bc",
+    "object" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/AppLogger.o",
+    "swift-dependencies" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/AppLogger.swiftdeps",
+    "swiftmodule" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/AppLogger~partial.swiftmodule"
+  },
+  "/Users/macbookprom1/Desktop/EDisplay/Sources/DisplayCore/Models/DisplaySessionConfiguration.swift" : {
+    "const-values" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/DisplaySessionConfiguration.swiftconstvalues",
+    "dependencies" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/DisplaySessionConfiguration.d",
+    "diagnostics" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/DisplaySessionConfiguration.dia",
+    "index-unit-output-path" : "/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/DisplaySessionConfiguration.o",
+    "llvm-bc" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/DisplaySessionConfiguration.bc",
+    "object" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/DisplaySessionConfiguration.o",
+    "swift-dependencies" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/DisplaySessionConfiguration.swiftdeps",
+    "swiftmodule" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/DisplaySessionConfiguration~partial.swiftmodule"
+  },
+  "/Users/macbookprom1/Desktop/EDisplay/Sources/DisplayCore/Models/DisplaySessionState.swift" : {
+    "const-values" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/DisplaySessionState.swiftconstvalues",
+    "dependencies" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/DisplaySessionState.d",
+    "diagnostics" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/DisplaySessionState.dia",
+    "index-unit-output-path" : "/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/DisplaySessionState.o",
+    "llvm-bc" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/DisplaySessionState.bc",
+    "object" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/DisplaySessionState.o",
+    "swift-dependencies" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/DisplaySessionState.swiftdeps",
+    "swiftmodule" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/DisplaySessionState~partial.swiftmodule"
+  },
+  "/Users/macbookprom1/Desktop/EDisplay/Sources/DisplayCore/Models/EventLogEntry.swift" : {
+    "const-values" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/EventLogEntry.swiftconstvalues",
+    "dependencies" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/EventLogEntry.d",
+    "diagnostics" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/EventLogEntry.dia",
+    "index-unit-output-path" : "/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/EventLogEntry.o",
+    "llvm-bc" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/EventLogEntry.bc",
+    "object" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/EventLogEntry.o",
+    "swift-dependencies" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/EventLogEntry.swiftdeps",
+    "swiftmodule" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/EventLogEntry~partial.swiftmodule"
+  },
+  "/Users/macbookprom1/Desktop/EDisplay/Sources/DisplayCore/Models/MockFrameDescriptor.swift" : {
+    "const-values" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/MockFrameDescriptor.swiftconstvalues",
+    "dependencies" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/MockFrameDescriptor.d",
+    "diagnostics" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/MockFrameDescriptor.dia",
+    "index-unit-output-path" : "/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/MockFrameDescriptor.o",
+    "llvm-bc" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/MockFrameDescriptor.bc",
+    "object" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/MockFrameDescriptor.o",
+    "swift-dependencies" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/MockFrameDescriptor.swiftdeps",
+    "swiftmodule" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/MockFrameDescriptor~partial.swiftmodule"
+  },
+  "/Users/macbookprom1/Desktop/EDisplay/Sources/DisplayCore/Models/SessionPhases.swift" : {
+    "const-values" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/SessionPhases.swiftconstvalues",
+    "dependencies" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/SessionPhases.d",
+    "diagnostics" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/SessionPhases.dia",
+    "index-unit-output-path" : "/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/SessionPhases.o",
+    "llvm-bc" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/SessionPhases.bc",
+    "object" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/SessionPhases.o",
+    "swift-dependencies" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/SessionPhases.swiftdeps",
+    "swiftmodule" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/SessionPhases~partial.swiftmodule"
+  },
+  "/Users/macbookprom1/Desktop/EDisplay/Sources/DisplayCore/Models/TransportMessages.swift" : {
+    "const-values" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/TransportMessages.swiftconstvalues",
+    "dependencies" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/TransportMessages.d",
+    "diagnostics" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/TransportMessages.dia",
+    "index-unit-output-path" : "/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/TransportMessages.o",
+    "llvm-bc" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/TransportMessages.bc",
+    "object" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/TransportMessages.o",
+    "swift-dependencies" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/TransportMessages.swiftdeps",
+    "swiftmodule" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/TransportMessages~partial.swiftmodule"
+  },
+  "/Users/macbookprom1/Desktop/EDisplay/Sources/DisplayCore/Models/TransportPacket.swift" : {
+    "const-values" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/TransportPacket.swiftconstvalues",
+    "dependencies" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/TransportPacket.d",
+    "diagnostics" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/TransportPacket.dia",
+    "index-unit-output-path" : "/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/TransportPacket.o",
+    "llvm-bc" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/TransportPacket.bc",
+    "object" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/TransportPacket.o",
+    "swift-dependencies" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/TransportPacket.swiftdeps",
+    "swiftmodule" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/TransportPacket~partial.swiftmodule"
+  },
+  "/Users/macbookprom1/Desktop/EDisplay/Sources/DisplayCore/Session/DisplaySessionController.swift" : {
+    "const-values" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/DisplaySessionController.swiftconstvalues",
+    "dependencies" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/DisplaySessionController.d",
+    "diagnostics" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/DisplaySessionController.dia",
+    "index-unit-output-path" : "/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/DisplaySessionController.o",
+    "llvm-bc" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/DisplaySessionController.bc",
+    "object" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/DisplaySessionController.o",
+    "swift-dependencies" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/DisplaySessionController.swiftdeps",
+    "swiftmodule" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/DisplaySessionController~partial.swiftmodule"
+  },
+  "/Users/macbookprom1/Desktop/EDisplay/Sources/DisplayCore/Session/SessionRuntime.swift" : {
+    "const-values" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/SessionRuntime.swiftconstvalues",
+    "dependencies" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/SessionRuntime.d",
+    "diagnostics" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/SessionRuntime.dia",
+    "index-unit-output-path" : "/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/SessionRuntime.o",
+    "llvm-bc" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/SessionRuntime.bc",
+    "object" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/SessionRuntime.o",
+    "swift-dependencies" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/SessionRuntime.swiftdeps",
+    "swiftmodule" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/SessionRuntime~partial.swiftmodule"
+  },
+  "/Users/macbookprom1/Desktop/EDisplay/Sources/DisplayCore/Transport/LoopbackBroker.swift" : {
+    "const-values" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/LoopbackBroker.swiftconstvalues",
+    "dependencies" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/LoopbackBroker.d",
+    "diagnostics" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/LoopbackBroker.dia",
+    "index-unit-output-path" : "/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/LoopbackBroker.o",
+    "llvm-bc" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/LoopbackBroker.bc",
+    "object" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/LoopbackBroker.o",
+    "swift-dependencies" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/LoopbackBroker.swiftdeps",
+    "swiftmodule" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/LoopbackBroker~partial.swiftmodule"
+  },
+  "/Users/macbookprom1/Desktop/EDisplay/Sources/DisplayCore/Transport/LoopbackTransport.swift" : {
+    "const-values" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/LoopbackTransport.swiftconstvalues",
+    "dependencies" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/LoopbackTransport.d",
+    "diagnostics" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/LoopbackTransport.dia",
+    "index-unit-output-path" : "/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/LoopbackTransport.o",
+    "llvm-bc" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/LoopbackTransport.bc",
+    "object" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/LoopbackTransport.o",
+    "swift-dependencies" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/LoopbackTransport.swiftdeps",
+    "swiftmodule" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/LoopbackTransport~partial.swiftmodule"
+  },
+  "/Users/macbookprom1/Desktop/EDisplay/Sources/DisplayCore/Transport/NetworkTransport.swift" : {
+    "const-values" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/NetworkTransport.swiftconstvalues",
+    "dependencies" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/NetworkTransport.d",
+    "diagnostics" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/NetworkTransport.dia",
+    "index-unit-output-path" : "/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/NetworkTransport.o",
+    "llvm-bc" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/NetworkTransport.bc",
+    "object" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/NetworkTransport.o",
+    "swift-dependencies" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/NetworkTransport.swiftdeps",
+    "swiftmodule" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/NetworkTransport~partial.swiftmodule"
+  },
+  "/Users/macbookprom1/Desktop/EDisplay/Sources/DisplayCore/Transport/Transport.swift" : {
+    "const-values" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/Transport.swiftconstvalues",
+    "dependencies" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/Transport.d",
+    "diagnostics" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/Transport.dia",
+    "index-unit-output-path" : "/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/Transport.o",
+    "llvm-bc" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/Transport.bc",
+    "object" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/Transport.o",
+    "swift-dependencies" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/Transport.swiftdeps",
+    "swiftmodule" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/Transport~partial.swiftmodule"
+  },
+  "/Users/macbookprom1/Desktop/EDisplay/Sources/DisplayCore/Transport/TransportError.swift" : {
+    "const-values" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/TransportError.swiftconstvalues",
+    "dependencies" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/TransportError.d",
+    "diagnostics" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/TransportError.dia",
+    "index-unit-output-path" : "/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/TransportError.o",
+    "llvm-bc" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/TransportError.bc",
+    "object" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/TransportError.o",
+    "swift-dependencies" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/TransportError.swiftdeps",
+    "swiftmodule" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/TransportError~partial.swiftmodule"
+  },
+  "/Users/macbookprom1/Desktop/EDisplay/Sources/DisplayCore/Transport/WiredTransport.swift" : {
+    "const-values" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/WiredTransport.swiftconstvalues",
+    "dependencies" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/WiredTransport.d",
+    "diagnostics" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/WiredTransport.dia",
+    "index-unit-output-path" : "/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/WiredTransport.o",
+    "llvm-bc" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/WiredTransport.bc",
+    "object" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/WiredTransport.o",
+    "swift-dependencies" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/WiredTransport.swiftdeps",
+    "swiftmodule" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/WiredTransport~partial.swiftmodule"
+  },
+  "/Users/macbookprom1/Desktop/EDisplay/Sources/HostApp/App/XDisplayHostApp.swift" : {
+    "const-values" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/XDisplayHostApp.swiftconstvalues",
+    "dependencies" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/XDisplayHostApp.d",
+    "diagnostics" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/XDisplayHostApp.dia",
+    "index-unit-output-path" : "/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/XDisplayHostApp.o",
+    "llvm-bc" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/XDisplayHostApp.bc",
+    "object" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/XDisplayHostApp.o",
+    "swift-dependencies" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/XDisplayHostApp.swiftdeps",
+    "swiftmodule" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/XDisplayHostApp~partial.swiftmodule"
+  },
+  "/Users/macbookprom1/Desktop/EDisplay/Sources/HostApp/Capture/ScreenCaptureCoordinator.swift" : {
+    "const-values" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/ScreenCaptureCoordinator.swiftconstvalues",
+    "dependencies" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/ScreenCaptureCoordinator.d",
+    "diagnostics" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/ScreenCaptureCoordinator.dia",
+    "index-unit-output-path" : "/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/ScreenCaptureCoordinator.o",
+    "llvm-bc" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/ScreenCaptureCoordinator.bc",
+    "object" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/ScreenCaptureCoordinator.o",
+    "swift-dependencies" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/ScreenCaptureCoordinator.swiftdeps",
+    "swiftmodule" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/ScreenCaptureCoordinator~partial.swiftmodule"
+  },
+  "/Users/macbookprom1/Desktop/EDisplay/Sources/HostApp/Capture/ScreenCapturePermissionCoordinator.swift" : {
+    "const-values" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/ScreenCapturePermissionCoordinator.swiftconstvalues",
+    "dependencies" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/ScreenCapturePermissionCoordinator.d",
+    "diagnostics" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/ScreenCapturePermissionCoordinator.dia",
+    "index-unit-output-path" : "/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/ScreenCapturePermissionCoordinator.o",
+    "llvm-bc" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/ScreenCapturePermissionCoordinator.bc",
+    "object" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/ScreenCapturePermissionCoordinator.o",
+    "swift-dependencies" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/ScreenCapturePermissionCoordinator.swiftdeps",
+    "swiftmodule" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/ScreenCapturePermissionCoordinator~partial.swiftmodule"
+  },
+  "/Users/macbookprom1/Desktop/EDisplay/Sources/HostApp/Features/Dashboard/HostDashboardView.swift" : {
+    "const-values" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/HostDashboardView.swiftconstvalues",
+    "dependencies" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/HostDashboardView.d",
+    "diagnostics" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/HostDashboardView.dia",
+    "index-unit-output-path" : "/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/HostDashboardView.o",
+    "llvm-bc" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/HostDashboardView.bc",
+    "object" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/HostDashboardView.o",
+    "swift-dependencies" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/HostDashboardView.swiftdeps",
+    "swiftmodule" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/HostDashboardView~partial.swiftmodule"
+  },
+  "/Users/macbookprom1/Desktop/EDisplay/Sources/HostApp/Features/Dashboard/HostDashboardViewModel.swift" : {
+    "const-values" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/HostDashboardViewModel.swiftconstvalues",
+    "dependencies" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/HostDashboardViewModel.d",
+    "diagnostics" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/HostDashboardViewModel.dia",
+    "index-unit-output-path" : "/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/HostDashboardViewModel.o",
+    "llvm-bc" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/HostDashboardViewModel.bc",
+    "object" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/HostDashboardViewModel.o",
+    "swift-dependencies" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/HostDashboardViewModel.swiftdeps",
+    "swiftmodule" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/HostDashboardViewModel~partial.swiftmodule"
+  },
+  "/Users/macbookprom1/Desktop/EDisplay/Sources/HostApp/VirtualDisplay/VirtualDisplayManager.swift" : {
+    "const-values" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/VirtualDisplayManager.swiftconstvalues",
+    "dependencies" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/VirtualDisplayManager.d",
+    "diagnostics" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/VirtualDisplayManager.dia",
+    "index-unit-output-path" : "/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/VirtualDisplayManager.o",
+    "llvm-bc" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/VirtualDisplayManager.bc",
+    "object" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/VirtualDisplayManager.o",
+    "swift-dependencies" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/VirtualDisplayManager.swiftdeps",
+    "swiftmodule" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/VirtualDisplayManager~partial.swiftmodule"
+  }
+}

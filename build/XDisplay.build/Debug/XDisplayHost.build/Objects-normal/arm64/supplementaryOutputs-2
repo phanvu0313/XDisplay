@@ -1,0 +1,23 @@
+{
+  "/Users/macbookprom1/Desktop/EDisplay/Sources/DisplayCore/Logging/AppLogger.swift" : {
+    "const-values" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/AppLogger.swiftconstvalues",
+    "dependencies" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/AppLogger.d",
+    "diagnostics" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/AppLogger.dia",
+    "object" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/AppLogger.o",
+    "swift-dependencies" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/AppLogger.swiftdeps"
+  },
+  "/Users/macbookprom1/Desktop/EDisplay/Sources/DisplayCore/Models/DisplaySessionConfiguration.swift" : {
+    "const-values" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/DisplaySessionConfiguration.swiftconstvalues",
+    "dependencies" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/DisplaySessionConfiguration.d",
+    "diagnostics" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/DisplaySessionConfiguration.dia",
+    "object" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/DisplaySessionConfiguration.o",
+    "swift-dependencies" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/DisplaySessionConfiguration.swiftdeps"
+  },
+  "/Users/macbookprom1/Desktop/EDisplay/Sources/DisplayCore/Session/DisplaySessionController.swift" : {
+    "const-values" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/DisplaySessionController.swiftconstvalues",
+    "dependencies" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/DisplaySessionController.d",
+    "diagnostics" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/DisplaySessionController.dia",
+    "object" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/DisplaySessionController.o",
+    "swift-dependencies" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/DisplaySessionController.swiftdeps"
+  }
+}

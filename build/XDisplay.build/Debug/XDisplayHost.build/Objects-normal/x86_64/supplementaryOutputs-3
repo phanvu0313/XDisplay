@@ -1,0 +1,23 @@
+{
+  "/Users/macbookprom1/Desktop/EDisplay/Sources/DisplayCore/Models/DisplaySessionState.swift" : {
+    "const-values" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/x86_64/DisplaySessionState.swiftconstvalues",
+    "dependencies" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/x86_64/DisplaySessionState.d",
+    "diagnostics" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/x86_64/DisplaySessionState.dia",
+    "object" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/x86_64/DisplaySessionState.o",
+    "swift-dependencies" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/x86_64/DisplaySessionState.swiftdeps"
+  },
+  "/Users/macbookprom1/Desktop/EDisplay/Sources/DisplayCore/Models/EventLogEntry.swift" : {
+    "const-values" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/x86_64/EventLogEntry.swiftconstvalues",
+    "dependencies" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/x86_64/EventLogEntry.d",
+    "diagnostics" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/x86_64/EventLogEntry.dia",
+    "object" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/x86_64/EventLogEntry.o",
+    "swift-dependencies" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/x86_64/EventLogEntry.swiftdeps"
+  },
+  "/Users/macbookprom1/Desktop/EDisplay/Sources/HostApp/Features/Dashboard/HostDashboardView.swift" : {
+    "const-values" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/x86_64/HostDashboardView.swiftconstvalues",
+    "dependencies" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/x86_64/HostDashboardView.d",
+    "diagnostics" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/x86_64/HostDashboardView.dia",
+    "object" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/x86_64/HostDashboardView.o",
+    "swift-dependencies" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/x86_64/HostDashboardView.swiftdeps"
+  }
+}

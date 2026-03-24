@@ -1,0 +1,59 @@
+name: XDisplay
+options:
+  bundleIdPrefix: com.xdisplay
+  deploymentTarget:
+    iOS: "18.0"
+    macOS: "15.0"
+configs:
+  Debug: debug
+  Release: release
+settings:
+  base:
+    SWIFT_VERSION: 6.0
+    PRODUCT_NAME: $(TARGET_NAME)
+    GENERATE_INFOPLIST_FILE: YES
+    MARKETING_VERSION: 0.1.0
+    CURRENT_PROJECT_VERSION: 1
+packages: {}
+schemes:
+  XDisplayHost:
+    build:
+      targets:
+        XDisplayHost: all
+    run:
+      config: Debug
+  XDisplayClient:
+    build:
+      targets:
+        XDisplayClient: all
+    run:
+      config: Debug
+targets:
+  XDisplayHost:
+    type: application
+    platform: macOS
+    sources:
+      - path: Sources/DisplayCore
+      - path: Sources/HostApp
+    settings:
+      base:
+        CODE_SIGN_STYLE: Automatic
+        DEVELOPMENT_TEAM: 4CE29YF43E
+        CODE_SIGN_IDENTITY: Apple Development
+        PRODUCT_BUNDLE_IDENTIFIER: com.xdisplay.host
+        SWIFT_OBJC_BRIDGING_HEADER: Sources/HostApp/App/XDisplayHost-Bridging-Header.h
+        INFOPLIST_KEY_NSScreenCaptureUsageDescription: XDisplay needs screen capture access to stream the virtual display to your iPhone.
+  XDisplayClient:
+    type: application
+    platform: iOS
+    sources:
+      - path: Sources/DisplayCore
+      - path: Sources/ClientApp
+    settings:
+      base:
+        CODE_SIGN_STYLE: Automatic
+        DEVELOPMENT_TEAM: 4CE29YF43E
+        PRODUCT_BUNDLE_IDENTIFIER: com.xdisplay.client
+        TARGETED_DEVICE_FAMILY: 1
+        GENERATE_INFOPLIST_FILE: NO
+        INFOPLIST_FILE: Sources/ClientApp/Resources/Info.plist

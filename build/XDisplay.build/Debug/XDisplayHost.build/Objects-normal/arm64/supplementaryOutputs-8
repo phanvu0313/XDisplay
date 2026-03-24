@@ -1,0 +1,23 @@
+{
+  "/Users/macbookprom1/Desktop/EDisplay/Sources/DisplayCore/Models/MockFrameDescriptor.swift" : {
+    "const-values" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/MockFrameDescriptor.swiftconstvalues",
+    "dependencies" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/MockFrameDescriptor.d",
+    "diagnostics" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/MockFrameDescriptor.dia",
+    "object" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/MockFrameDescriptor.o",
+    "swift-dependencies" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/MockFrameDescriptor.swiftdeps"
+  },
+  "/Users/macbookprom1/Desktop/EDisplay/Sources/DisplayCore/Transport/NetworkTransport.swift" : {
+    "const-values" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/NetworkTransport.swiftconstvalues",
+    "dependencies" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/NetworkTransport.d",
+    "diagnostics" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/NetworkTransport.dia",
+    "object" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/NetworkTransport.o",
+    "swift-dependencies" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/NetworkTransport.swiftdeps"
+  },
+  "/Users/macbookprom1/Desktop/EDisplay/Sources/HostApp/Capture/ScreenCaptureCoordinator.swift" : {
+    "const-values" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/ScreenCaptureCoordinator.swiftconstvalues",
+    "dependencies" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/ScreenCaptureCoordinator.d",
+    "diagnostics" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/ScreenCaptureCoordinator.dia",
+    "object" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/ScreenCaptureCoordinator.o",
+    "swift-dependencies" : "/Users/macbookprom1/Desktop/EDisplay/build/XDisplay.build/Debug/XDisplayHost.build/Objects-normal/arm64/ScreenCaptureCoordinator.swiftdeps"
+  }
+}
